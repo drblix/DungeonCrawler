@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Foreground
+  - Player
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1968537113
+    locked: 0
+  - name: Player
+    uniqueID: 3172370599
     locked: 0
   - name: Foreground
     uniqueID: 898630225
