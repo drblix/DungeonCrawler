@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - UI
   - Foreground
   - Player
-  - 
-  - 
+  - Enemy
+  - PostProcessing
   - 
   - 
   - 
@@ -44,9 +46,18 @@ TagManager:
   - name: Background
     uniqueID: 1968537113
     locked: 0
+  - name: Pickups
+    uniqueID: 3519699897
+    locked: 0
+  - name: Enemies
+    uniqueID: 506944867
+    locked: 0
   - name: Player
     uniqueID: 3172370599
     locked: 0
   - name: Foreground
     uniqueID: 898630225
+    locked: 0
+  - name: UI
+    uniqueID: 2056217557
     locked: 0
