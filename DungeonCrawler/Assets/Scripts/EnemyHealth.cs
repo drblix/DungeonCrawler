@@ -1,21 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class Enemy : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     private ParticleSystem pSystem;
+    private AudioSource audioSource;
     private AIPath aiPath;
 
     [SerializeField]
     private Animator animator;
     [SerializeField]
     private SpriteRenderer sRenderer;
+    [SerializeField]
+    private GameObject coin;
 
     [SerializeField]
     private int maxHealth = 5;
-
     private int currentHealth;
 
     private bool dead = false;
@@ -24,6 +25,8 @@ public class Enemy : MonoBehaviour
     {
         pSystem = GetComponent<ParticleSystem>();
         aiPath = GetComponent<AIPath>();
+        audioSource = GetComponent<AudioSource>();
+
         currentHealth = maxHealth;
     }
 
@@ -65,6 +68,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
+        audioSource.Play();
+        Instantiate(coin, transform.position, Quaternion.identity);
         pSystem.Emit(Random.Range(15, 25));
         sRenderer.enabled = false;
 

@@ -6,9 +6,14 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     private Rigidbody2D rb;
+    [SerializeField]
     private ParticleSystem pSystem;
+    [SerializeField]
+    private ParticleSystem smokeTrail;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
+
+    private readonly string[] collisionExclusions = { "Pickup", }; // Tags
 
     private const float arrowSpeed = 8f;
 
@@ -17,9 +22,10 @@ public class Arrow : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        pSystem = GetComponent<ParticleSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+
+        smokeTrail.Play();
     }
 
     private void FixedUpdate()
@@ -34,12 +40,22 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hit) { return; }
+        bool excluded = false;
+
+        foreach (string exclusion in collisionExclusions)
+        {
+            if (collision.CompareTag(exclusion))
+            {
+                excluded = true;
+            }
+        }
+
+        if (hit || excluded) { return; }
         hit = true;
 
         if (collision.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
 
             if (enemy != null)
             {
@@ -52,8 +68,10 @@ public class Arrow : MonoBehaviour
 
     private IEnumerator Contact()
     {
+        var emission = smokeTrail.emission;
         spriteRenderer.enabled = false;
         audioSource.Play();
+        emission.enabled = false;
         pSystem.Play();
 
         yield return new WaitForSeconds(pSystem.main.duration);
