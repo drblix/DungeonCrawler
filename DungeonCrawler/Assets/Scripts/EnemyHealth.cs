@@ -70,7 +70,8 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         audioSource.Play();
-        Instantiate(coin, transform.position, Quaternion.identity);
+        GameObject newCoin = Instantiate(coin, transform.position, Quaternion.identity);
+        newCoin.GetComponent<Coin>().SetCoinAmount(1);
         pSystem.Emit(Random.Range(15, 25));
         sRenderer.enabled = false;
 
