@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     private bool dead = false;
+    public bool Dead { get { return dead; } }
 
     private void Awake()
     {

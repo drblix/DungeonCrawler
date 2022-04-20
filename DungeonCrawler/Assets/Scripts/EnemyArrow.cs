@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Arrow : MonoBehaviour
+public class EnemyArrow : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField]
@@ -51,14 +51,16 @@ public class Arrow : MonoBehaviour
 
         if (hit || excluded) { return; }
         hit = true;
+        GetComponent<BoxCollider2D>().enabled = false;
 
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player"))
         {
-            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
 
-            if (enemy != null)
+            if (playerHealth != null)
             {
-                enemy.StartDamage(1);
+                Debug.Log("Damaging!");
+                playerHealth.RemoveHealth(1);
             }
         }
 

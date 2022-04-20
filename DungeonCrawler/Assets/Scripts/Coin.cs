@@ -1,9 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    private CoinManagement coinManagement;
+
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
     private AudioSource pickUpSFX;
@@ -13,6 +14,7 @@ public class Coin : MonoBehaviour
 
     private void Awake()
     {
+        coinManagement = FindObjectOfType<CoinManagement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         pickUpSFX = GetComponent<AudioSource>();
@@ -23,7 +25,7 @@ public class Coin : MonoBehaviour
         boxCollider.enabled = false;
         spriteRenderer.enabled = false;
         pickUpSFX.Play();
-        // Add to coins amount
+        coinManagement.AddCoins(coinValue);
 
         yield return new WaitForSeconds(pickUpSFX.clip.length);
 
