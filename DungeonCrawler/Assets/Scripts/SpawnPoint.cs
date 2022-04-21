@@ -15,10 +15,6 @@ public class SpawnPoint : MonoBehaviour
     private bool occupied = false;
     public bool Occupied { get { return occupied; } }
 
-    public SpawnPoint roomThatSpawned;
-
-    private bool roomCreated = false;
-
     private const float waitTime = 0.25f;
 
     private void Awake()
@@ -49,14 +45,11 @@ public class SpawnPoint : MonoBehaviour
             Instantiate(room, transform.position, Quaternion.identity, grid);
 
             SetOccupied(true);
-            roomCreated = true;
         }
     }
 
     private void CreateCloseRoom()
     {
-        if (roomCreated) { return; }
-
         GameObject room = roomGeneration.FetchCloserRoom(openingDirection);
 
         Instantiate(room, transform.parent.position, Quaternion.identity, grid);
@@ -69,9 +62,9 @@ public class SpawnPoint : MonoBehaviour
 
         if (!collision.GetComponent<SpawnPoint>().Occupied && !Occupied)
         {
-            GameObject room = roomGeneration.FetchCloserRoom(openingDirection);
+            // GameObject room = roomGeneration.FetchCloserRoom(openingDirection);
 
-            Instantiate(room, transform.parent.position, Quaternion.identity, grid);
+            // Instantiate(room, transform.parent.position, Quaternion.identity, grid);
             Destroy(gameObject);
         }
 

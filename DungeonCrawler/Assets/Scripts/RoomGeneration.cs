@@ -15,6 +15,11 @@ public class RoomGeneration : MonoBehaviour
     [SerializeField]
     private GameObject[] closerRooms; // 0 = Top; 1 = Right; 2 = Bottom; 3 = Left
 
+    private void Start()
+    {
+        Invoke(nameof(InstantiateClosers), 5f);
+    }
+
     public GameObject FetchRoom(int openDirection)
     {
         switch (openDirection)
@@ -63,4 +68,22 @@ public class RoomGeneration : MonoBehaviour
         }
     }
 
+    private void InstantiateClosers()
+    {
+        Debug.Log("Instantiating closers");
+        int num = 0;
+
+        DoorPoint[] doorPoints = FindObjectsOfType<DoorPoint>();
+
+        foreach (DoorPoint point in doorPoints)
+        {
+            if (!point.Connected)
+            {
+                point.CreateCloser();
+                num++;
+            }
+        }
+
+        Debug.Log(string.Format("{0} closers created", num));
+    }
 }

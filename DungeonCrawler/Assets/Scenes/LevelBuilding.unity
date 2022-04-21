@@ -1075,22 +1075,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topRooms:
   - {fileID: 661216692035655080, guid: 4d60b2bdb9093c94f92ecc039380c5cf, type: 3}
-  - {fileID: 661216692035655080, guid: ae9d477f7d2ffb6419d8ce605513912b, type: 3}
-  - {fileID: 661216692035655080, guid: 5e72434160a7e2543b0f2d5f3eeac569, type: 3}
   rightRooms:
   - {fileID: 661216692035655080, guid: 2f0a0c444e24a80489481c54017d2162, type: 3}
   - {fileID: 661216692035655080, guid: d6dd5dcdda16b294d92a8afc69c383b0, type: 3}
-  - {fileID: 661216692035655080, guid: 731bb79b12cf9b844bfc3a032d6b5bcd, type: 3}
-  - {fileID: 661216692035655080, guid: ae9d477f7d2ffb6419d8ce605513912b, type: 3}
   bottomRooms:
   - {fileID: 661216692035655080, guid: ae950eedf14260f43871c61bd986c9b1, type: 3}
-  - {fileID: 661216692035655080, guid: 731bb79b12cf9b844bfc3a032d6b5bcd, type: 3}
-  - {fileID: 661216692035655080, guid: be1be11a4bc96ad46aa158ead15818db, type: 3}
   leftRooms:
   - {fileID: 661216692035655080, guid: 2f0a0c444e24a80489481c54017d2162, type: 3}
   - {fileID: 661216692035655080, guid: 7236fdbf5bbed4646942685275c96e11, type: 3}
-  - {fileID: 661216692035655080, guid: 5e72434160a7e2543b0f2d5f3eeac569, type: 3}
-  - {fileID: 661216692035655080, guid: be1be11a4bc96ad46aa158ead15818db, type: 3}
   closerRooms:
   - {fileID: 6268669835131611799, guid: 8b30d7b5f1313204da8f05ade263c2f1, type: 3}
   - {fileID: 4855963109050928572, guid: 00f7a8e452780b84a8a05378e03041a6, type: 3}
