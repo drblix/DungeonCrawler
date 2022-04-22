@@ -42,7 +42,8 @@ public class SpawnPoint : MonoBehaviour
             
             if (room == null) { return; }
 
-            Instantiate(room, transform.position, Quaternion.identity, grid);
+            GameObject generatedRoom = Instantiate(room, transform.position, Quaternion.identity, grid);
+            roomGeneration.generatedRooms.Add(generatedRoom);
 
             SetOccupied(true);
         }

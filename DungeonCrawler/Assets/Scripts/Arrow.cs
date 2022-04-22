@@ -18,6 +18,9 @@ public class Arrow : MonoBehaviour
 
     private bool hit = false;
 
+    public static int damageAmount = 1;
+    public static int maxCritChance = 6;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -54,11 +57,34 @@ public class Arrow : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
+            int critChance = Random.Range(1, maxCritChance);
+            bool isCrit = false;
+
+            if (critChance == 1) { isCrit = true; }
+
             EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+            Vector2 collisionPos = collision.transform.position;
+            collisionPos.y += 0.5f;
 
             if (enemy != null)
             {
-                enemy.StartDamage(1);
+                if (isCrit)
+                {
+                    enemy.StartDamage(damageAmount * 2);
+                }
+                else
+                {
+                    enemy.StartDamage(damageAmount);
+                }
+            }
+
+            if (isCrit)
+            {
+                DamagePopup.Create(collisionPos, damageAmount * 2, true);
+            }
+            else
+            {
+                DamagePopup.Create(collisionPos, damageAmount, false);
             }
         }
 
