@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class Player : MonoBehaviour
 {
+    private PlayerMana playerMana;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -15,44 +15,40 @@ public class Player : MonoBehaviour
     private GameObject[] aimDisplay; // 0 - Right; 1 - Left; 2 - Top; 3 - Bottom;
 
     [SerializeField]
-    private GameObject arrow;
-
-    [SerializeField]
-    private TextMeshProUGUI ammoDisplay;
+    private GameObject projectile;
 
     [SerializeField]
     private float moveSpeed;
 
-    public int maxAmmo = 5;
-    private int currentAmmo;
-
     private bool canShoot = true;
-    private bool reloading = false;
 
     [SerializeField]
     private float shootCooldown = 0.2f;
-    [SerializeField]
-    private float reloadTime = 1.5f;
+
+    private bool inDialogue = false;
+    public bool InDialogue { get { return inDialogue; } }
 
     private void Awake()
     {
+        playerMana = GetComponent<PlayerMana>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
         aimDisplay[0].SetActive(true);
-        currentAmmo = maxAmmo;
-
-        UpdateDisplay();
     }
 
     private void Update()
     {
+        if (inDialogue) { return; }
+
         InputCheck();
     }
 
     private void FixedUpdate()
     {
+        if (inDialogue) { return; }
+
         Movement();
     }
 
@@ -149,58 +145,26 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canShoot)
         {
-            if (currentAmmo == 0)
-            {
-                StartCoroutine(Reload());
-            }
-            else if (currentAmmo > 0)
+            if (playerMana.RemoveMana(5f))
             {
                 canShoot = false;
-                currentAmmo--;
-                UpdateDisplay();
-                StartCoroutine(ShootArrow());
+                StartCoroutine(ShootProjectile());
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R) && !reloading && currentAmmo != maxAmmo)
-        {
-            StartCoroutine(Reload());
-        }
     }
 
-    private void UpdateDisplay()
+    private IEnumerator ShootProjectile()
     {
-        if (reloading) { return; }
-
-        string newText = string.Format("{0} / {1}", currentAmmo, maxAmmo);
-
-        ammoDisplay.text = newText;
-    }
-
-    private IEnumerator Reload()
-    {
-        if (reloading) { yield return null; }
-
-        reloading = true;
-        canShoot = false;
-
-        ammoDisplay.text = "Reloading...";
-
-        yield return new WaitForSeconds(reloadTime);
-
-        currentAmmo = maxAmmo;
-        reloading = false;
-        canShoot = true;
-
-        UpdateDisplay();
-    }
-
-    private IEnumerator ShootArrow()
-    {
-        Instantiate(arrow, aimer.position, aimer.rotation);
+        Instantiate(projectile, aimer.position, aimer.rotation);
 
         yield return new WaitForSeconds(shootCooldown);
 
         canShoot = true;
+    }
+
+    public void ToggleDialogue(bool state)
+    {
+        inDialogue = state;
+        animator.SetBool("Moving", false);
     }
 }

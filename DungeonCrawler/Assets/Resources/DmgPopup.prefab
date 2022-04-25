@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1413389299376412435}
   - component: {fileID: 1646917902809265452}
-  - component: {fileID: 7938324057390814783}
   - component: {fileID: 2502292355382388008}
+  - component: {fileID: 7938324057390814783}
   m_Layer: 0
   m_Name: DmgPopup
   m_TagString: Untagged
@@ -80,18 +80,6 @@ MeshRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7938324057390814783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6062286195778839479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1b316ed4abc4144bfc9bfaa9249287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2502292355382388008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +172,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1646917902809265452}
   m_maskType: 0
+--- !u!114 &7938324057390814783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062286195778839479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1b316ed4abc4144bfc9bfaa9249287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

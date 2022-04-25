@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Arrow : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField]
@@ -18,8 +18,10 @@ public class Arrow : MonoBehaviour
 
     private bool hit = false;
 
-    public static int damageAmount = 1;
-    public static int maxCritChance = 6;
+    [SerializeField]
+    private int damageAmount = 1;
+
+    private const int critChance = 20;
 
     private void Awake()
     {
@@ -57,10 +59,7 @@ public class Arrow : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            int critChance = Random.Range(1, maxCritChance);
-            bool isCrit = false;
-
-            if (critChance == 1) { isCrit = true; }
+            bool isCrit = Random.Range(1, 100) <= critChance;
 
             EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
             Vector2 collisionPos = collision.transform.position;

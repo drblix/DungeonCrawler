@@ -2,6 +2,12 @@ using UnityEngine;
 
 public static class GameAssets
 {
+    /// <summary>
+    /// Fetches the requested asset by the provided file name
+    /// </summary>
+    /// <param name="fileName">Name of the file requested</param>
+    /// <returns>Returns the prefab/file that was requested</returns>
+    /// <exception cref="System.Exception">Throws if the provided file name could not be found</exception>
     public static GameObject LoadPrefabFromFile(string fileName)
     {
         Debug.Log(string.Format("Fetching prefab of name '{0}'", fileName));

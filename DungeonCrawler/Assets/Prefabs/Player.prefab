@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &338963429527059424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7095914020841018596}
+  m_Layer: 7
+  m_Name: CircleDefense
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7095914020841018596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338963429527059424}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8913113895481246333}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4395650876612510974
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +149,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769784, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -437,7 +467,9 @@ GameObject:
   - component: {fileID: 9149412740105320953}
   - component: {fileID: 8913113895481246334}
   - component: {fileID: 8913113895481246320}
+  - component: {fileID: 4564900534208110016}
   - component: {fileID: 2163244406821978082}
+  - component: {fileID: 9010919621140527998}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -459,6 +491,7 @@ Transform:
   - {fileID: 8913113895438891495}
   - {fileID: 8913113895473261148}
   - {fileID: 3419075075750831097}
+  - {fileID: 7095914020841018596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -624,12 +657,23 @@ MonoBehaviour:
   - {fileID: 8913113895698920550}
   - {fileID: 8913113896029293899}
   - {fileID: 8913113895562097987}
-  arrow: {fileID: 8034951684304004907, guid: af7c0a3b5be5f1843a0015a992e2e61b, type: 3}
-  ammoDisplay: {fileID: 0}
+  projectile: {fileID: 0}
   moveSpeed: 5
-  maxAmmo: 5
   shootCooldown: 0.2
-  reloadTime: 1.5
+--- !u!114 &4564900534208110016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913113895481246330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6667dd7283b6ce94ea38ae2816ca9cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaBar: {fileID: 0}
+  manaText: {fileID: 0}
 --- !u!114 &2163244406821978082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +686,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3f7a3cce44f5b4c9f0a343aadf5810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9010919621140527998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913113895481246330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f4394cb52f8434bb73b834ec15531c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellObjects:
+  - {fileID: 2662753275420995031, guid: bbb1e35195a61154d930898c30f02fe8, type: 3}
+  - {fileID: 8034951684304004907, guid: 5aa8777773bb1d04798af41949ea2e4b, type: 3}
+  aimer: {fileID: 8913113895438891495}
+  circleRotater: {fileID: 7095914020841018596}
 --- !u!1 &8913113895562097987
 GameObject:
   m_ObjectHideFlags: 0

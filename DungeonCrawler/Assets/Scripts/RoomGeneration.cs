@@ -23,17 +23,27 @@ public class RoomGeneration : MonoBehaviour
     public List<GameObject> generatedRooms = new List<GameObject>();
 
     private const int minimumRooms = 6;
+    private const int maximumRooms = 35;
+
+    bool doneLoading = false;
 
     private void Start()
     {
         grid = GameObject.FindGameObjectWithTag("Grid").transform;
         generatedRooms.Clear();
-
-        Invoke(nameof(LoadingCleanup), 5f);
     }
 
     public GameObject FetchRoom(int openDirection)
     {
+        if (generatedRooms.Count >= maximumRooms)
+        {
+            if (doneLoading) { return null; }
+
+            doneLoading = true;
+            LoadingCleanup();
+            return null;
+        }
+
         switch (openDirection)
         {
             case 1:

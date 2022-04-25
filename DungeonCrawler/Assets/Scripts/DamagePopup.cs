@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class DamagePopup : MonoBehaviour
 {
-
+    /// <summary>
+    /// Creates a damage popup that displays the amount of the damage the player dealt
+    /// </summary>
+    /// <param name="position">Position at which the popup should be instantiated</param>
+    /// <param name="dmgAmount">Amount of the damage the player dealt</param>
+    /// <param name="critical">Was the shot a critical or not?</param>
+    /// <returns>Returns the damage popup that was created with the provided parameters</returns>
     public static DamagePopup Create(Vector2 position, int dmgAmount, bool critical)
     {
         var dmgPopUp = GameAssets.LoadPrefabFromFile("DmgPopup");
