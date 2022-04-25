@@ -5,6 +5,8 @@ using Pathfinding;
 
 public class GFXHandler : MonoBehaviour
 {
+    // <summary> Script for handling the sprite renderer direction and animation of enemies </summary>
+
     [SerializeField]
     private AIPath aiPath;
 

@@ -6049,7 +6049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101832686425407117, guid: 0005e31667bb03f45b7635eef7ce9c3f, type: 3}
       propertyPath: text.Array.data[0]
-      value: Hello adventurer! Welcome to The Enchanted Crypt!
+      value: Hello adventurer! Welcome to The Enchanted Crypt! (click to continue)
       objectReference: {fileID: 0}
     - target: {fileID: 101832686425407117, guid: 0005e31667bb03f45b7635eef7ce9c3f, type: 3}
       propertyPath: text.Array.data[1]
@@ -6449,7 +6449,7 @@ PrefabInstance:
     - target: {fileID: 8913113895481246320, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 5845807327003463782, guid: e38ffba6031fcbd49bf8bc68609c93c2, type: 3}
+      objectReference: {fileID: 8034951684304004907, guid: 5aa8777773bb1d04798af41949ea2e4b, type: 3}
     - target: {fileID: 8913113895481246320, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
       propertyPath: ammoDisplay
       value: 
@@ -6457,22 +6457,6 @@ PrefabInstance:
     - target: {fileID: 8913113895481246330, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913113895481246332, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913113895481246332, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913113895481246332, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913113895481246332, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8913113895481246333, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
       propertyPath: m_RootOrder

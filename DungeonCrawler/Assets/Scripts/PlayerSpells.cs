@@ -6,7 +6,7 @@ public class PlayerSpells : MonoBehaviour
 {
     // Spell ideas:
     // Circle Defense: Fires magic missiles in a circle around the player [DONE!]
-    // Acid Bolt: magic missile but green, low damage but afflicts damage over time [IN PROGRESS]
+    // Acid Bolt: magic missile but green, low damage but afflicts damage over time [DONE!]
     // Warrior's Might: coat yourself in magic armor, reducing damage you take from physical attacks
     // Simulacrum: summons a little dude to help you out [LEAST PRIORITY]
 
@@ -43,7 +43,7 @@ public class PlayerSpells : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !onCooldown && playerMana.RemoveMana(35f))
         {
             onCooldown = true;
-            // Acid bolt stuff
+            StartCoroutine(AcidMissile());
         }
 
         if (Input.GetKeyDown(KeyCode.C) && !onCooldown && playerMana.RemoveMana(50f))
@@ -92,6 +92,20 @@ public class PlayerSpells : MonoBehaviour
         circleRotater.localRotation = Quaternion.Euler(0f, 0f, 90f);
 
         yield return new WaitForSeconds(2.5f);
+        onCooldown = false;
+    }
+
+    private IEnumerator AcidMissile()
+    {
+        foreach (GameObject obj in spellObjects)
+        {
+            if (obj.name == "AcidMissile")
+            {
+                Instantiate(obj, aimer.position, aimer.rotation);
+            }
+        }
+
+        yield return new WaitForSeconds(1.5f);
         onCooldown = false;
     }
 }

@@ -15,7 +15,12 @@ public class TrainingDummy : MonoBehaviour
     {
         if (collision.CompareTag("Weapon"))
         {
-            animator.Play("DummyHit");
+           PlayAnim();
         }
+    }
+
+    public void PlayAnim()
+    {
+        animator.Play("DummyHit");
     }
 }

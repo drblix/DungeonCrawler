@@ -4,6 +4,36 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerProjectile : MonoBehaviour
 {
+    // Streamlining the instantiation of magic missiles :)
+
+    /// <summary>
+    /// Creates a magic missile / player projectile
+    /// </summary>
+    /// <param name="type">Type of missile to create ('MagicMissile', 'AcidMissile', or 'FireMissile')</param>
+    /// <param name="dmgAmnt">Amount of damage the missile does</param>
+    /// <returns>Returns the missile created with the provided parameters</returns>
+    public static PlayerProjectile Create(string type, int dmgAmnt)
+    {
+        bool isPoison;
+        var fabMissile = GameAssets.LoadPrefabFromFile(type);
+        var newMissile = Instantiate(fabMissile, fabMissile.transform.position, Quaternion.identity);
+
+        PlayerProjectile projScript = newMissile.GetComponent<PlayerProjectile>();
+
+        if (newMissile.name == "AcidMissile")
+        {
+            isPoison = true;
+        }
+        else
+        {
+            isPoison = false;
+        }
+
+        projScript.SetUp(dmgAmnt, isPoison);
+        
+        return projScript;
+    }
+
     private Rigidbody2D rb;
     [SerializeField]
     private ParticleSystem pSystem;
@@ -16,6 +46,8 @@ public class PlayerProjectile : MonoBehaviour
 
     private const float arrowSpeed = 8f;
 
+    [SerializeField]
+    private bool isPoison = false;
     private bool hit = false;
 
     [SerializeField]
@@ -30,6 +62,11 @@ public class PlayerProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         smokeTrail.Play();
+    }
+
+    private void SetUp(int dmgAmount, bool poison)
+    {
+
     }
 
     private void FixedUpdate()
@@ -59,31 +96,38 @@ public class PlayerProjectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            bool isCrit = Random.Range(1, 100) <= critChance;
-
-            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-            Vector2 collisionPos = collision.transform.position;
-            collisionPos.y += 0.5f;
-
-            if (enemy != null)
+            if (!isPoison)
             {
+                bool isCrit = Random.Range(1, 100) <= critChance;
+
+                EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+                Vector2 collisionPos = collision.transform.position;
+                collisionPos.y += 0.5f;
+
+                if (enemy != null)
+                {
+                    if (isCrit)
+                    {
+                        enemy.StartDamage(damageAmount * 2);
+                    }
+                    else
+                    {
+                        enemy.StartDamage(damageAmount);
+                    }
+                }
+
                 if (isCrit)
                 {
-                    enemy.StartDamage(damageAmount * 2);
+                    DamagePopup.Create(collisionPos, damageAmount * 2, true);
                 }
                 else
                 {
-                    enemy.StartDamage(damageAmount);
+                    DamagePopup.Create(collisionPos, damageAmount, false);
                 }
-            }
-
-            if (isCrit)
-            {
-                DamagePopup.Create(collisionPos, damageAmount * 2, true);
             }
             else
             {
-                DamagePopup.Create(collisionPos, damageAmount, false);
+                collision.gameObject.AddComponent<PoisonScript>();
             }
         }
 

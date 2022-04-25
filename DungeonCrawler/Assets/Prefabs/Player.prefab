@@ -149,7 +149,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.77707, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -701,6 +701,7 @@ MonoBehaviour:
   spellObjects:
   - {fileID: 2662753275420995031, guid: bbb1e35195a61154d930898c30f02fe8, type: 3}
   - {fileID: 8034951684304004907, guid: 5aa8777773bb1d04798af41949ea2e4b, type: 3}
+  - {fileID: 5845807327003463782, guid: e38ffba6031fcbd49bf8bc68609c93c2, type: 3}
   aimer: {fileID: 8913113895438891495}
   circleRotater: {fileID: 7095914020841018596}
 --- !u!1 &8913113895562097987

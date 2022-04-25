@@ -50,11 +50,12 @@ public class EnemyHealth : MonoBehaviour
             yield return null;
         }
 
+        Color ogColor = sRenderer.color;
         sRenderer.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
 
-        sRenderer.color = Color.white;
+        sRenderer.color = ogColor;
     }
 
     private IEnumerator Death()
