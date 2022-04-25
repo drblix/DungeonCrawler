@@ -19,6 +19,8 @@ public class EnemyHealth : MonoBehaviour
     private int maxHealth = 5;
     private int currentHealth;
 
+    public bool poisoned = false;
+
     private bool dead = false;
     public bool Dead { get { return dead; } }
 
@@ -50,12 +52,18 @@ public class EnemyHealth : MonoBehaviour
             yield return null;
         }
 
-        Color ogColor = sRenderer.color;
         sRenderer.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
 
-        sRenderer.color = ogColor;
+        if (!poisoned)
+        {
+           sRenderer.color = Color.white; 
+        }
+        else
+        {
+            sRenderer.color = Color.green;
+        }
     }
 
     private IEnumerator Death()

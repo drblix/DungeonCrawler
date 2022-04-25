@@ -23,7 +23,7 @@ public class RoomGeneration : MonoBehaviour
     public List<GameObject> generatedRooms = new List<GameObject>();
 
     private const int minimumRooms = 6;
-    private const int maximumRooms = 35;
+    private const int maximumRooms = 25;
 
     bool doneLoading = false;
 
@@ -31,6 +31,7 @@ public class RoomGeneration : MonoBehaviour
     {
         grid = GameObject.FindGameObjectWithTag("Grid").transform;
         generatedRooms.Clear();
+        Invoke(nameof(LoadingCleanup), 6f);
     }
 
     public GameObject FetchRoom(int openDirection)
@@ -92,6 +93,25 @@ public class RoomGeneration : MonoBehaviour
 
     private void LoadingCleanup()
     {
+        if (IsInvoking(nameof(LoadingCleanup)))
+        {
+            CancelInvoke(nameof(LoadingCleanup));
+        }
+
+        // Gives time for trigger colliders to register
+        float timer = 0f;
+        float maxTimer = 2f;
+
+        while (true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= maxTimer)
+            {
+                break;
+            }
+        }
+
         // <summary> Instantiates closer rooms at door points that aren't
         // connected to another room </summary>
 

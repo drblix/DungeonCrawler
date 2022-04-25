@@ -15,18 +15,14 @@ public class Player : MonoBehaviour
     private GameObject[] aimDisplay; // 0 - Right; 1 - Left; 2 - Top; 3 - Bottom;
 
     [SerializeField]
-    private GameObject projectile;
-
-    [SerializeField]
     private float moveSpeed;
 
     private bool canShoot = true;
 
-    [SerializeField]
-    private float shootCooldown = 0.2f;
+    private const float shootCooldown = 0.2f;
 
-    private bool inDialogue = false;
-    public bool InDialogue { get { return inDialogue; } }
+    private bool playerEnabled = true;
+    public bool PlayerEnabled { get { return playerEnabled; } }
 
     private void Awake()
     {
@@ -40,14 +36,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (inDialogue) { return; }
+        if (!playerEnabled) { return; }
 
         InputCheck();
     }
 
     private void FixedUpdate()
     {
-        if (inDialogue) { return; }
+        if (!playerEnabled) { return; }
 
         Movement();
     }
@@ -155,16 +151,17 @@ public class Player : MonoBehaviour
 
     private IEnumerator ShootProjectile()
     {
-        Instantiate(projectile, aimer.position, aimer.rotation);
+        PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.MagicMissile, 1);
+        newMissile.transform.SetPositionAndRotation(aimer.position, aimer.rotation);
 
         yield return new WaitForSeconds(shootCooldown);
 
         canShoot = true;
     }
 
-    public void ToggleDialogue(bool state)
+    public void ToggleEnabled(bool state)
     {
-        inDialogue = state;
+        playerEnabled = state;
         animator.SetBool("Moving", false);
     }
 }

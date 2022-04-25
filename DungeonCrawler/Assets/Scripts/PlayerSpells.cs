@@ -55,13 +55,8 @@ public class PlayerSpells : MonoBehaviour
 
     private IEnumerator Fireball()
     {
-        foreach (GameObject obj in spellObjects)
-        {
-            if (obj.name == "FireMissile")
-            {
-                Instantiate(obj, aimer.position, aimer.rotation);
-            }
-        }
+        PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.FireMissile, 2);
+        newMissile.transform.SetPositionAndRotation(aimer.position, aimer.rotation);
 
         yield return new WaitForSeconds(0.75f);
         onCooldown = false;
@@ -69,23 +64,12 @@ public class PlayerSpells : MonoBehaviour
 
     private IEnumerator CircleDefense()
     {
-        GameObject missile = null;
-
-        foreach (GameObject obj in spellObjects)
-        {
-            if (obj.name == "MagicMissile")
-            {
-                missile = obj;
-            }
-        }
-
-        if (missile == null) { Debug.LogError("Spell object could not be found"); yield return null; }
-
         for (int i = 0; i < 12; i++)
         {
             circleRotater.RotateAround(transform.position, Vector3.forward, 30f);
-            Instantiate(missile, circleRotater.position, circleRotater.rotation);
-            //yield return new WaitForSeconds(0.05f);
+            PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.MagicMissile, 1);
+            newMissile.transform.SetPositionAndRotation(circleRotater.position, circleRotater.rotation);
+            yield return new WaitForSeconds(0.02f);
         }
 
         circleRotater.localPosition = new Vector2(0f, 0.5f);
@@ -97,13 +81,8 @@ public class PlayerSpells : MonoBehaviour
 
     private IEnumerator AcidMissile()
     {
-        foreach (GameObject obj in spellObjects)
-        {
-            if (obj.name == "AcidMissile")
-            {
-                Instantiate(obj, aimer.position, aimer.rotation);
-            }
-        }
+        PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.AcidMissile, 1);
+        newMissile.transform.SetPositionAndRotation(aimer.position, aimer.rotation);
 
         yield return new WaitForSeconds(1.5f);
         onCooldown = false;

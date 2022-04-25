@@ -96,7 +96,7 @@ public class TextNotification : MonoBehaviour
             if (i == pageAmount)
             {
                 Player player = FindObjectOfType<Player>();
-                player.ToggleDialogue(false);
+                player.ToggleEnabled(true);
                 Destroy(gameObject);
             }
         }

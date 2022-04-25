@@ -12,26 +12,42 @@ public class PlayerProjectile : MonoBehaviour
     /// <param name="type">Type of missile to create ('MagicMissile', 'AcidMissile', or 'FireMissile')</param>
     /// <param name="dmgAmnt">Amount of damage the missile does</param>
     /// <returns>Returns the missile created with the provided parameters</returns>
-    public static PlayerProjectile Create(string type, int dmgAmnt)
+    public static PlayerProjectile Create(MissileType type, int dmgAmnt)
     {
-        bool isPoison;
-        var fabMissile = GameAssets.LoadPrefabFromFile(type);
+        string fileName;
+
+        switch (type)
+        {
+            case MissileType.MagicMissile:
+                fileName = "MagicMissile";
+                break;
+
+            case MissileType.FireMissile:
+                fileName = "FireMissile";
+                break;
+
+            case MissileType.AcidMissile:
+                fileName = "AcidMissile";
+                break;
+
+            default:
+                throw new System.Exception("Enum type not located!");
+        }
+
+        var fabMissile = GameAssets.LoadPrefabFromFile(fileName);
         var newMissile = Instantiate(fabMissile, fabMissile.transform.position, Quaternion.identity);
 
         PlayerProjectile projScript = newMissile.GetComponent<PlayerProjectile>();
-
-        if (newMissile.name == "AcidMissile")
-        {
-            isPoison = true;
-        }
-        else
-        {
-            isPoison = false;
-        }
-
-        projScript.SetUp(dmgAmnt, isPoison);
+        projScript.Setup(dmgAmnt);
         
         return projScript;
+    }
+
+    public enum MissileType
+    {
+        MagicMissile,
+        FireMissile,
+        AcidMissile
     }
 
     private Rigidbody2D rb;
@@ -64,9 +80,9 @@ public class PlayerProjectile : MonoBehaviour
         smokeTrail.Play();
     }
 
-    private void SetUp(int dmgAmount, bool poison)
+    private void Setup(int dmgAmount)
     {
-
+        damageAmount = dmgAmount;
     }
 
     private void FixedUpdate()
@@ -96,13 +112,13 @@ public class PlayerProjectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
+            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+            Vector2 collisionPos = collision.transform.position;
+            collisionPos.y += 0.5f;
+            
             if (!isPoison)
             {
                 bool isCrit = Random.Range(1, 100) <= critChance;
-
-                EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-                Vector2 collisionPos = collision.transform.position;
-                collisionPos.y += 0.5f;
 
                 if (enemy != null)
                 {
@@ -127,7 +143,17 @@ public class PlayerProjectile : MonoBehaviour
             }
             else
             {
-                collision.gameObject.AddComponent<PoisonScript>();
+                if (enemy != null)
+                {
+                    enemy.StartDamage(damageAmount);
+                }
+                
+                DamagePopup.Create(collisionPos, damageAmount, false);
+
+                if (!collision.gameObject.TryGetComponent<PoisonScript>(out PoisonScript _))
+                {
+                    collision.gameObject.AddComponent<PoisonScript>();
+                }
             }
         }
 

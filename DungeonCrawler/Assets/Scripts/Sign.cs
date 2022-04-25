@@ -31,9 +31,9 @@ public class Sign : MonoBehaviour
     {
         Player player = FindObjectOfType<Player>();
 
-        if (player == null || player.InDialogue) { return; }
+        if (player == null || !player.PlayerEnabled) { return; }
 
-        player.ToggleDialogue(true);
+        player.ToggleEnabled(false);
 
         TextNotification.Create(text, revealSpeed);
     }

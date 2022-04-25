@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     private Image heart02;
     private Image heart03;
 
-    private static readonly int maxHealth = 6;
+    private const int maxHealth = 6;
     private static int currentHealth = 6;
 
     private bool canDamage = true;
