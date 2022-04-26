@@ -33,7 +33,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-
     public void StartDamage(int dmgAmount)
     {
         if (dead) { return; }

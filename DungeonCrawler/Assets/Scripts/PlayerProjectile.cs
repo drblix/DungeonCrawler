@@ -34,7 +34,7 @@ public class PlayerProjectile : MonoBehaviour
                 throw new System.Exception("Enum type not located!");
         }
 
-        var fabMissile = GameAssets.LoadPrefabFromFile(fileName);
+        var fabMissile = GameUtilities.LoadPrefabFromFile(fileName);
         var newMissile = Instantiate(fabMissile, fabMissile.transform.position, Quaternion.identity);
 
         PlayerProjectile projScript = newMissile.GetComponent<PlayerProjectile>();

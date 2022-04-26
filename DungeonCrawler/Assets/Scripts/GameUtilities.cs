@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class GameAssets
+public static class GameUtilities
 {
     /// <summary>
     /// Fetches the requested asset by the provided file name

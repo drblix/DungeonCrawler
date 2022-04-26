@@ -12,7 +12,7 @@ public class TextNotification : MonoBehaviour
     /// <returns>Returns the notification box created using the previously provided parameters</returns>
     public static TextNotification Create(string[] text, float revealSpeed)
     {
-        var fabNoti = GameAssets.LoadPrefabFromFile("TextNoti");
+        var fabNoti = GameUtilities.LoadPrefabFromFile("TextNoti");
         var newNoti = Instantiate(fabNoti, fabNoti.transform.position, Quaternion.identity);
 
         TextNotification notiScript = newNoti.GetComponent<TextNotification>();

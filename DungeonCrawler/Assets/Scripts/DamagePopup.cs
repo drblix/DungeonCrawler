@@ -12,7 +12,7 @@ public class DamagePopup : MonoBehaviour
     /// <returns>Returns the damage popup that was created with the provided parameters</returns>
     public static DamagePopup Create(Vector2 position, int dmgAmount, bool critical)
     {
-        var dmgPopUp = GameAssets.LoadPrefabFromFile("DmgPopup");
+        var dmgPopUp = GameUtilities.LoadPrefabFromFile("DmgPopup");
         var newPopup = Instantiate(dmgPopUp, position, Quaternion.identity);
 
         DamagePopup popupScript = newPopup.GetComponent<DamagePopup>();
@@ -35,7 +35,7 @@ public class DamagePopup : MonoBehaviour
 
     private void Start()
     {
-        transform.LeanMove(targetPos, 1f);
+        transform.LeanMove(targetPos, 1f).setEaseInSine();
         LeanTween.value(gameObject, UpdateColor, textMesh.color, toColor, 1f);
         Destroy(gameObject, 1f);
     }

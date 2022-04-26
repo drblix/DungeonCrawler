@@ -36,7 +36,7 @@ public class PoisonScript : MonoBehaviour
 
     private IEnumerator PoisonDamage()
     {
-        int num = Random.Range(2, 3);
+        int num = Random.Range(2, 4);
         sRenderer.color = Color.green;
 
         for (int i = 0; i < num; i++)
@@ -55,7 +55,11 @@ public class PoisonScript : MonoBehaviour
             DamagePopup.Create(transform.position, 1, false);
         }
 
-        enemyHealth.poisoned = false;
+        if (!isDummy)
+        {
+            enemyHealth.poisoned = false;
+        }
+
         yield return new WaitForSeconds(0.1f);
         
         sRenderer.color = Color.white;
