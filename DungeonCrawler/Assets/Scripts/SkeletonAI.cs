@@ -32,6 +32,8 @@ public class SkeletonAI : MonoBehaviour
 
         collisionLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Foreground");
 
+        destinationSetter.target = FindObjectOfType<Player>().transform;
+
         StartCoroutine(ShootArrow());
     }
 

@@ -6,6 +6,7 @@ using TMPro;
 public class PlayerMana : MonoBehaviour
 {
     private float maxMana = 100f;
+    public float MaxMana { get { return maxMana; }}
     private float currentMana;
     public float CurrentMana { get { return currentMana; } }
 
@@ -41,6 +42,8 @@ public class PlayerMana : MonoBehaviour
         {
             currentMana = maxMana;
         }
+
+        UpdateDisplay();
     }
 
     private void UpdateDisplay()

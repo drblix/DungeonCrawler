@@ -10,6 +10,7 @@ public class PlayerSpells : MonoBehaviour
     // Warrior's Might: coat yourself in magic armor, reducing damage you take from physical attacks
     // Simulacrum: summons a little dude to help you out [LEAST PRIORITY]
 
+    private Player player;
     private PlayerMana playerMana;
 
     [SerializeField]
@@ -25,11 +26,15 @@ public class PlayerSpells : MonoBehaviour
     private void Awake()
     {
         playerMana = GetComponent<PlayerMana>();
+        player = GetComponent<Player>();
     }
 
     private void Update()
     {
-        CheckInput();
+        if (player.PlayerEnabled)
+        {
+            CheckInput();
+        }
     }
 
     private void CheckInput()

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private Player player;
     private SpriteRenderer sRenderer;
+    private Animator animator;
+    private ParticleSystem pSystem;
 
     private Image heart01;
     private Image heart02;
@@ -13,12 +17,16 @@ public class PlayerHealth : MonoBehaviour
 
     private const int maxHealth = 6;
     private static int currentHealth = 6;
+    public static int CurrentHealth { get { return currentHealth; } }
 
     private bool canDamage = true;
 
     private void Awake()
     {
+        player = GetComponent<Player>();
         sRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        pSystem = GetComponent<ParticleSystem>();
 
         heart01 = GameObject.Find("Heart1").GetComponent<Image>();
         heart02 = GameObject.Find("Heart2").GetComponent<Image>();
@@ -45,15 +53,35 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
 
-        if (currentHealth <= 0) { GameOver(); }
+        if (currentHealth <= 0) { StartCoroutine(GameOver()); }
 
         StartCoroutine(DamageFlash());
         UpdateUI();
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
-        Debug.Log("You dead");
+        player.ToggleEnabled(false);
+        animator.SetBool("Dead", true);
+
+        foreach (BoxCollider2D collider in GetComponents<BoxCollider2D>())
+        {
+            collider.enabled = false;
+        }
+
+        foreach (AIPath path in FindObjectsOfType<AIPath>())
+        {
+            path.enabled = false;
+        }
+
+        transform.Find("AimDisplays").gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(2.5f);
+
+        sRenderer.enabled = false;
+        pSystem.Play();
+
+        // To game over screen or something
     }
 
     private IEnumerator DamageFlash()
