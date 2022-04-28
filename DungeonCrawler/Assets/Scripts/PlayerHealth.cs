@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
@@ -15,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     private Image heart02;
     private Image heart03;
 
+    private AudioSource source;
+
     private const int maxHealth = 6;
     private static int currentHealth = 6;
     public static int CurrentHealth { get { return currentHealth; } }
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         sRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         pSystem = GetComponent<ParticleSystem>();
+        source = GetComponent<AudioSource>();
 
         heart01 = GameObject.Find("Heart1").GetComponent<Image>();
         heart02 = GameObject.Find("Heart2").GetComponent<Image>();
@@ -80,6 +82,9 @@ public class PlayerHealth : MonoBehaviour
 
         sRenderer.enabled = false;
         pSystem.Play();
+        source.Play();
+
+        yield return new WaitForSeconds(2f);
 
         // To game over screen or something
     }

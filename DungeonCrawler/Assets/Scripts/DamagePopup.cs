@@ -36,6 +36,7 @@ public class DamagePopup : MonoBehaviour
     private void Start()
     {
         transform.LeanMove(targetPos, 1f).setEaseInSine();
+        transform.LeanScale(Vector3.zero, 0.8f).setEaseInBack();
         LeanTween.value(gameObject, UpdateColor, textMesh.color, toColor, 1f);
         Destroy(gameObject, 1f);
     }

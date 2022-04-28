@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
@@ -29,7 +27,7 @@ public class GFXHandler : MonoBehaviour
     {
         float velocityX = Mathf.Sign(aiPath.velocity.x);
 
-        if (aiPath.desiredVelocity.x > 0f || aiPath.desiredVelocity.x < 0f || aiPath.desiredVelocity.y > 0f || aiPath.desiredVelocity.y < 0f)
+        if (aiPath.desiredVelocity.x > 0f && aiPath.canMove || aiPath.desiredVelocity.x < 0f && aiPath.canMove || aiPath.desiredVelocity.y > 0f && aiPath.canMove || aiPath.desiredVelocity.y < 0f && aiPath.canMove)
         {
             animator.SetBool("Moving", true);
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Potion : MonoBehaviour
@@ -9,6 +7,9 @@ public class Potion : MonoBehaviour
         ManaPotion,
         HealthPotion
     }
+
+    [SerializeField]
+    private AudioClip clip;
 
     [SerializeField]
     private PotionType type;
@@ -52,8 +53,6 @@ public class Potion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        Debug.Log(other.name);
-
         if (other.CompareTag("Player") && !used)
         {
             switch (type)
@@ -62,6 +61,7 @@ public class Potion : MonoBehaviour
                     if (playerMana.CurrentMana != playerMana.MaxMana)
                     {
                         used = true;
+                        AudioSource.PlayClipAtPoint(clip, transform.position);
                         playerMana.AddMana(manaGain);
                         Destroy(gameObject);
                     }
@@ -71,6 +71,7 @@ public class Potion : MonoBehaviour
                     if (PlayerHealth.CurrentHealth != 6)
                     {
                         used = true;
+                        AudioSource.PlayClipAtPoint(clip, transform.position);
                         playerHealth.AddHealth(healthGain);
                         Destroy(gameObject);
                     }

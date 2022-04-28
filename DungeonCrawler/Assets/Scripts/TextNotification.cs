@@ -67,6 +67,13 @@ public class TextNotification : MonoBehaviour
 
     private IEnumerator PlayText()
     {
+        RectTransform notiRect = transform.GetChild(0).GetComponent<RectTransform>();
+        notiRect.localScale = new Vector3(0f, 0f, 0f);
+
+        notiRect.LeanScale(Vector3.one, 1f).setEaseOutBounce();
+
+        yield return new WaitForSeconds(1f);
+
         // Loops through each page (element) of the string array that was passed in
         for (int i = 1; i <= pageAmount; i++)
         {
@@ -97,6 +104,12 @@ public class TextNotification : MonoBehaviour
             {
                 Player player = FindObjectOfType<Player>();
                 player.ToggleEnabled(true);
+
+                uiText.text = null;
+                notiRect.LeanScale(Vector3.zero, 1f).setEaseInCirc();
+
+                yield return new WaitForSeconds(1f);
+
                 Destroy(gameObject);
             }
         }
