@@ -11,6 +11,21 @@ public class MainMenu : MonoBehaviour
     {
         audioSrc = GetComponent<AudioSource>();
     }
+    
+    public void StartGame()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     public void SizeUpButton(Transform obj)
     {
@@ -23,4 +38,25 @@ public class MainMenu : MonoBehaviour
     {
         obj.LeanScale(Vector3.one, scaleTime).setEaseInCirc();
     }
+
+    public void DisableNotiSound(bool state)
+    {
+        PlayerSettings.disableNotiSound = state;
+    }
+
+    public void DisableSFX(bool state)
+    {
+        PlayerSettings.disabledSFX = state;
+    }
+
+    public void ModifyVolume(float num)
+    {
+        AudioListener.volume = num;
+    }
+}
+
+public class PlayerSettings
+{
+    public static bool disableNotiSound = false;
+    public static bool disabledSFX = false;
 }

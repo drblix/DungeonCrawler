@@ -11006,10 +11006,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8491632592947017769, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8491632592947017769, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
       propertyPath: m_PixelPerfect
       value: 1
       objectReference: {fileID: 0}
