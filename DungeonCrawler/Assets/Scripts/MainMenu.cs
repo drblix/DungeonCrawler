@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     private AudioSource audioSrc;
 
-    float scaleTime = 0.2f;
+    const float scaleTime = 0.2f;
 
     private void Awake() 
     {
@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene(2);
+        SceneTransitioner.CreateTransition(2, Vector2.zero);
     }
 
     public void StartTutorial()
     {
-        SceneManager.LoadScene(1);
+        SceneTransitioner.CreateTransition(1, Vector2.zero);
     }
 
     public void QuitGame()

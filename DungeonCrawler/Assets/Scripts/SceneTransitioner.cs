@@ -5,15 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
 {
-    public static SceneTransitioner Create(int sceneToLoad)
+    public static void CreateTransition(int sceneToLoad, Vector2 position)
     {
         var fabTransition = GameUtilities.LoadPrefabFromFile("SceneTransition");
         var newTransition = Instantiate(fabTransition, fabTransition.transform.position, Quaternion.identity);
 
-        SceneTransitioner transitioner = newTransition.GetComponent<SceneTransitioner>();
-        transitioner.Setup(sceneToLoad);
-
-        return transitioner;
+        SceneTransitioner transitioner = newTransition.GetComponentInChildren<SceneTransitioner>();
+        transitioner.Setup(sceneToLoad, position);
     }
 
     private Animator animator;
@@ -22,17 +20,23 @@ public class SceneTransitioner : MonoBehaviour
 
     private void Awake() 
     {
+        if (FindObjectsOfType<SceneTransitioner>().Length > 1)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(transform.parent.gameObject);
+        }
+
         animator = GetComponent<Animator>();
+        Time.timeScale = 1f;
     }
 
-    private void Start() 
-    {
-        DontDestroyOnLoad(transform.parent.gameObject);
-    }
-
-    private void Setup(int sceneLoading)
+    private void Setup(int sceneLoading, Vector2 position)
     {
         loadingSceneIndex = sceneLoading;
+        transform.parent.SetPositionAndRotation(position, Quaternion.identity);
         StartCoroutine(Transition());
     }
 
@@ -44,7 +48,6 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator Transition()
     {
-        animator.SetTrigger("BeginTrans");
         yield return new WaitForSeconds(2f);
         Destroy(transform.parent.gameObject);
     }
