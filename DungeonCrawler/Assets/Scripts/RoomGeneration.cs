@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Pathfinding;
 
 public class RoomGeneration : MonoBehaviour
 {
+    private AstarPath pathfinder;
     private Transform grid;
 
     // 18 x 10 rooms
@@ -29,6 +31,7 @@ public class RoomGeneration : MonoBehaviour
 
     private void Start()
     {
+        pathfinder = FindObjectOfType<AstarPath>();
         grid = GameObject.FindGameObjectWithTag("Grid").transform;
         generatedRooms.Clear();
         Invoke(nameof(LoadingCleanup), 6f);
@@ -160,7 +163,8 @@ public class RoomGeneration : MonoBehaviour
         }
 
         GameObject bossRoom = generatedRooms[generatedRooms.Count - 1].transform.GetChild(0).GetChild(0).gameObject;
-
         bossRoom.GetComponent<Tilemap>().color = Color.red;
+
+        pathfinder.Scan();
     }
 }

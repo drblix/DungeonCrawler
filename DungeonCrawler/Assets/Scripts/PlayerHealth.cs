@@ -86,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        // To game over screen or something
+        SceneTransitioner.CreateTransition(2, Vector2.zero);
     }
 
     private IEnumerator DamageFlash()

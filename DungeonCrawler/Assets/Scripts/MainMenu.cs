@@ -1,20 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private AudioSource audioSrc;
-
     const float scaleTime = 0.2f;
-
-    private void Awake() 
-    {
-        audioSrc = GetComponent<AudioSource>();
-    }
     
     public void StartGame()
     {
-        SceneTransitioner.CreateTransition(2, Vector2.zero);
+        SceneTransitioner.CreateTransition(3, Vector2.zero);
     }
 
     public void StartTutorial()

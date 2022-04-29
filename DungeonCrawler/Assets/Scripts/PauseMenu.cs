@@ -29,5 +29,6 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneTransitioner.CreateTransition(0, Vector2.zero);
+        Destroy(gameObject);
     }
 }
