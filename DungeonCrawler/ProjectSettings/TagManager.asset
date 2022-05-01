@@ -9,6 +9,7 @@ TagManager:
   - Pickup
   - Grid
   - UICamera
+  - CameraSetters
   layers:
   - Default
   - TransparentFX

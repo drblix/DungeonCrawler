@@ -12,7 +12,7 @@ public class EnemyArrow : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
-    private readonly string[] collisionExclusions = { "Pickup", }; // Tags
+    private readonly string[] collisionExclusions = { "Pickup", "CameraSetters" }; // Tags
 
     private const float arrowSpeed = 8f;
 

@@ -14,9 +14,6 @@ public class PlayerSpells : MonoBehaviour
     private PlayerMana playerMana;
 
     [SerializeField]
-    private List<GameObject> spellObjects = new List<GameObject>();
-
-    [SerializeField]
     private Transform aimer;
     [SerializeField]
     private Transform circleRotater;

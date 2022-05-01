@@ -11087,6 +11087,10 @@ PrefabInstance:
       propertyPath: manaText
       value: 
       objectReference: {fileID: 819848894}
+    - target: {fileID: 5680980388822966225, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7095914020841018596, guid: 6e0dc464bec6fcc49bd409b01b21fe67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90

@@ -65,6 +65,8 @@ public class SkeletonAI : MonoBehaviour
         Vector2 direction = (destinationSetter.target.position - transform.position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 10f, collisionLayers);
 
+        if (hit.collider == null) { return; }
+
         if (hit.collider.CompareTag("Weapon")) { return; }
 
         if (Vector2.Distance(transform.position, destinationSetter.target.position) < distanceToShoot && hit.collider != null && hit.collider.CompareTag("Player"))

@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             dead = true;
-            StartCoroutine(Death());
+            Death();
             yield return null;
         }
 
@@ -65,20 +65,27 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private IEnumerator Death()
+    private void Death()
     {
         aiPath.canMove = false;
         animator.SetBool("Dead", true);
+        audioSource.Play();
+
+        Vector2 coinPos = transform.position;
+        coinPos.y += 1;
+
+        GameObject newCoin = Instantiate(coin, coinPos, Quaternion.identity);
+        newCoin.GetComponent<Coin>().SetCoinAmount(1);
 
         foreach (CircleCollider2D collider in GetComponents<CircleCollider2D>())
         {
             collider.enabled = false;
         }
 
+        /*
+
         yield return new WaitForSeconds(1.5f);
 
-        audioSource.Play();
-        GameObject newCoin = Instantiate(coin, transform.position, Quaternion.identity);
         newCoin.GetComponent<Coin>().SetCoinAmount(1);
         pSystem.Emit(Random.Range(15, 25));
         sRenderer.enabled = false;
@@ -86,5 +93,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(pSystem.main.duration);
 
         Destroy(gameObject);
+        */
     }
 }

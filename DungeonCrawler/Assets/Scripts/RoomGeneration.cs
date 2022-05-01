@@ -34,7 +34,7 @@ public class RoomGeneration : MonoBehaviour
         pathfinder = FindObjectOfType<AstarPath>();
         grid = GameObject.FindGameObjectWithTag("Grid").transform;
         generatedRooms.Clear();
-        Invoke(nameof(LoadingCleanup), 6f);
+        StartCoroutine(LoadingCleanup(6f));
     }
 
     public GameObject FetchRoom(int openDirection)
@@ -44,7 +44,8 @@ public class RoomGeneration : MonoBehaviour
             if (doneLoading) { return null; }
 
             doneLoading = true;
-            LoadingCleanup();
+            StopCoroutine(LoadingCleanup(0f));
+            StartCoroutine(LoadingCleanup(0f));
             return null;
         }
 
@@ -94,26 +95,12 @@ public class RoomGeneration : MonoBehaviour
         }
     }
 
-    private void LoadingCleanup()
+    private IEnumerator LoadingCleanup(float delay)
     {
-        if (IsInvoking(nameof(LoadingCleanup)))
-        {
-            CancelInvoke(nameof(LoadingCleanup));
-        }
+        yield return new WaitForSeconds(delay);
 
         // Gives time for trigger colliders to register
-        float timer = 0f;
-        float maxTimer = 2f;
-
-        while (true)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= maxTimer)
-            {
-                break;
-            }
-        }
+        yield return new WaitForSeconds(2f);
 
         // <summary> Instantiates closer rooms at door points that aren't
         // connected to another room </summary>
@@ -149,22 +136,43 @@ public class RoomGeneration : MonoBehaviour
             if (!int.TryParse(x, out _))
             {
                 Destroy(child.gameObject);
+                generatedRooms.Remove(child.gameObject);
                 num2++;
             }
         }
 
         Debug.Log(string.Format("Deleted {0} overlaying rooms", num2));
 
-        // <summary>  </summary>
+        // <summary> Checks if the amount of generated rooms is less than the minimum required rooms.
+        // If so, regenerates the thingy </summary>
 
         if (generatedRooms.Count < minimumRooms)
         {
             Debug.Log("Regenerate rooms");
         }
 
-        GameObject bossRoom = generatedRooms[generatedRooms.Count - 1].transform.GetChild(0).GetChild(0).gameObject;
-        bossRoom.GetComponent<Tilemap>().color = Color.red;
+        // <summary> Grabs the last room added to the list of generated rooms and makes
+        // it the boss room </summary>
+
+        GameObject bossRoom = generatedRooms[generatedRooms.Count - 1];
+        RoomContentCreator creator1 = bossRoom.GetComponent<RoomContentCreator>();
+        
+        if (creator1 != null)
+        {
+            creator1.GenerateContent();
+        }
+        //bossRoom.GetComponent<Tilemap>().color = Color.red;
 
         pathfinder.Scan();
+
+        foreach (GameObject room in generatedRooms)
+        {
+            RoomContentCreator creator2 = room.GetComponent<RoomContentCreator>();
+            
+            if (creator2 != null)
+            {
+                creator2.GenerateContent();
+            }
+        }
     }
 }
