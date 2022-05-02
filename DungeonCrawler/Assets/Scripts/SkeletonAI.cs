@@ -34,6 +34,16 @@ public class SkeletonAI : MonoBehaviour
 
         destinationSetter.target = FindObjectOfType<Player>().transform;
 
+        //StartCoroutine(ShootArrow());
+    }
+
+    private void OnDisable() 
+    {
+        StopCoroutine(ShootArrow());
+    }
+
+    private void OnEnable() 
+    {
         StartCoroutine(ShootArrow());
     }
 

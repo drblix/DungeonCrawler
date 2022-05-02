@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     private ParticleSystem pSystem;
     private AudioSource audioSource;
     private AIPath aiPath;
+    private Seeker seeker;
+    private AIDestinationSetter setter;
 
     [SerializeField]
     private Animator animator;
@@ -28,9 +30,20 @@ public class EnemyHealth : MonoBehaviour
     {
         pSystem = GetComponent<ParticleSystem>();
         aiPath = GetComponent<AIPath>();
+        seeker = GetComponent<Seeker>();
+        setter = GetComponent<AIDestinationSetter>();
         audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
+    }
+
+    
+    private void OnEnable() 
+    {
+        if (dead)
+        {
+            animator.SetBool("Dead", true);
+        }
     }
 
     public void StartDamage(int dmgAmount)
@@ -67,7 +80,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void Death()
     {
-        aiPath.canMove = false;
+        // aiPath.canMove = false;
+        Destroy(aiPath);
+        Destroy(seeker);
+        Destroy(setter);
+        Destroy(GetComponentInChildren<GFXHandler>());
+
         animator.SetBool("Dead", true);
         audioSource.Play();
 

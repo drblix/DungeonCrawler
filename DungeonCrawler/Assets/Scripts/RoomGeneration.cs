@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Pathfinding;
 
 public class RoomGeneration : MonoBehaviour
@@ -159,6 +158,7 @@ public class RoomGeneration : MonoBehaviour
         
         if (creator1 != null)
         {
+            creator1.ToggleBossRoom(true);
             creator1.GenerateContent();
         }
         //bossRoom.GetComponent<Tilemap>().color = Color.red;
