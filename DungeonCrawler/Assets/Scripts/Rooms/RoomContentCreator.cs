@@ -9,6 +9,9 @@ public class RoomContentCreator : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> enemies = new List<GameObject>();
+    
+    [SerializeField]
+    private List<GameObject> utilities = new List<GameObject>();
 
     [SerializeField]
     private List<Transform> spawnPoints = new List<Transform>();
@@ -29,7 +32,6 @@ public class RoomContentCreator : MonoBehaviour
             if (willMakeEnemies && chance1 && spawn.gameObject.activeInHierarchy)
             {
                 Instantiate(enemies[Random.Range(0, enemies.Count)], spawn.position, Quaternion.identity, objContainer);
-                //spawnPoints.Remove(spawn);
                 spawn.gameObject.SetActive(false);
             }
 
@@ -37,7 +39,7 @@ public class RoomContentCreator : MonoBehaviour
 
             if (willSpawnUtilities && chance2 && spawn.gameObject.activeInHierarchy)
             {
-                //spawnPoints.Remove(spawn);
+                Instantiate(utilities[Random.Range(0, utilities.Count)], spawn.position, Quaternion.identity);
                 spawn.gameObject.SetActive(false);
             }
         }

@@ -1,82 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SpellBook : MonoBehaviour
 {
-    [SerializeField]
-    private Button mainButton;
+    const float scaleTime = 0.2f;
 
-    [SerializeField]
-    private Button closeButton;
-    
-    [SerializeField]
-    private Button page1Next;
-
-    [SerializeField]
-    private Button page2Back;
-
-    [SerializeField]
-    private GameObject bookStuff;
-
-    [SerializeField]
-    private GameObject page1;
-
-    [SerializeField]
-    private GameObject page2;
-
-    private AudioSource audioSrc;
-
-    private void Awake() 
-    {
-        audioSrc = GetComponent<AudioSource>();
-
-        bookStuff.SetActive(false);
-        page2.SetActive(false);
-    }
-
-    private void Start() 
-    {
-        mainButton.onClick.AddListener(delegate { ButtonPressed("Main"); });
-        closeButton.onClick.AddListener(delegate { ButtonPressed("Close"); });
-        page1Next.onClick.AddListener(delegate { ButtonPressed("Page1"); });
-        page2Back.onClick.AddListener(delegate { ButtonPressed("Page2"); });
-    }
-
-    private void ButtonPressed(string eventName)
+    public void TogglePlayer(bool state)
     {
         Player player = FindObjectOfType<Player>();
+        player.ToggleEnabled(state);
+    }
 
-        switch (eventName)
-        {
-            case "Main":
-                if (bookStuff.activeInHierarchy || !player.PlayerEnabled) { return; }
-                bookStuff.SetActive(true);
-                player.ToggleEnabled(false);
-                break;
+    public void SizeUpButton(Transform obj)
+    {
+        Vector3 scaleVector = new Vector3(1.1f, 1.1f, 1.1f);
 
-            case "Close":
-                bookStuff.SetActive(false);
-                page1.SetActive(true);
-                page2.SetActive(false);
-                player.ToggleEnabled(true);
-                break;
+        obj.LeanScale(scaleVector, scaleTime).setEaseOutCirc();
+    }
 
-            case "Page1":
-                page1.SetActive(false);
-                page2.SetActive(true);
-                break;
-
-            case "Page2":
-                page1.SetActive(true);
-                page2.SetActive(false);
-                break;
-        }
-
-        if (!audioSrc.isPlaying)
-        {
-            audioSrc.Play();
-        }
+    public void SizeDownButton(Transform obj)
+    {
+        obj.LeanScale(Vector3.one, scaleTime).setEaseInCirc();
     }
 }

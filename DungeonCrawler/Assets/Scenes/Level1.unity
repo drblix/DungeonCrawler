@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dbee0d7f28eb180428c4f33f79e0dc22, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7768595, y: 1}
+    m_SensorSize: {x: 1.7769784, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1638,6 +1638,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5033984783157975384, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519497878895720352, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519497878895720352, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825040981945542989, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8491632592947017764, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
       propertyPath: m_Name
       value: MainCanvas
@@ -1765,6 +1781,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1569977936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3337958415134905847, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+  m_PrefabInstance: {fileID: 1569977932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1569977937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569977936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!1 &1569977938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6519497878895720352, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
+  m_PrefabInstance: {fileID: 1569977932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1953447040 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 302440997548267354, guid: 32a323eccdf619f40a1f5ff47bd1971e, type: 3}
@@ -1827,6 +1866,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7474403983248449451, guid: 49e4cc1679ccc434cb91cf0f9abb9254, type: 3}
+      propertyPath: musicObj
+      value: 
+      objectReference: {fileID: 79754101}
+    - target: {fileID: 7474403983248449451, guid: 49e4cc1679ccc434cb91cf0f9abb9254, type: 3}
+      propertyPath: loadingScreen
+      value: 
+      objectReference: {fileID: 1569977938}
     - target: {fileID: 7474403983248449452, guid: 49e4cc1679ccc434cb91cf0f9abb9254, type: 3}
       propertyPath: m_Name
       value: RoomGenerator

@@ -7,12 +7,24 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
 
+    private RoomGeneration roomGeneration;
+
     const float scaleTime = 0.2f;
+
+    private void Awake() 
+    {
+        roomGeneration = FindObjectOfType<RoomGeneration>();
+    }
 
     private void Update() 
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (roomGeneration != null)
+            {
+                if (!roomGeneration.DoneLoading) { return; }
+            }
+            
             FindObjectOfType<Player>().ToggleEnabled(false);
             Time.timeScale = 0;
             pauseMenu.SetActive(true);

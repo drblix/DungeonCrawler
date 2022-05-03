@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Pathfinding;
 
 public class RoomGeneration : MonoBehaviour
 {
     private AstarPath pathfinder;
     private Transform grid;
+
+    [SerializeField]
+    private GameObject loadingScreen;
+
+    [SerializeField]
+    private GameObject musicObj;
+
+    [Header("Rooms")]
 
     // 18 x 10 rooms
     [SerializeField]
@@ -27,12 +36,14 @@ public class RoomGeneration : MonoBehaviour
     private const int maximumRooms = 25;
 
     bool doneLoading = false;
+    public bool DoneLoading { get { return doneLoading; } }
 
     private void Start()
     {
         pathfinder = FindObjectOfType<AstarPath>();
         grid = GameObject.FindGameObjectWithTag("Grid").transform;
         generatedRooms.Clear();
+        FindObjectOfType<Player>().ToggleEnabled(false);
         StartCoroutine(LoadingCleanup(6f));
     }
 
@@ -143,11 +154,11 @@ public class RoomGeneration : MonoBehaviour
         Debug.Log(string.Format("Deleted {0} overlaying rooms", num2));
 
         // <summary> Checks if the amount of generated rooms is less than the minimum required rooms.
-        // If so, regenerates the thingy </summary>
+        // If so, reloads the scene </summary>
 
         if (generatedRooms.Count < minimumRooms)
         {
-            Debug.Log("Regenerate rooms");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         // <summary> Grabs the last room added to the list of generated rooms and makes
@@ -161,7 +172,6 @@ public class RoomGeneration : MonoBehaviour
             creator1.ToggleBossRoom(true);
             creator1.GenerateContent();
         }
-        //bossRoom.GetComponent<Tilemap>().color = Color.red;
 
         pathfinder.Scan();
 
@@ -174,5 +184,10 @@ public class RoomGeneration : MonoBehaviour
                 creator2.GenerateContent();
             }
         }
+
+        // <summary> Finishes loading </summary>
+        loadingScreen.SetActive(false);
+        musicObj.SetActive(true);
+        FindObjectOfType<Player>().ToggleEnabled(true);
     }
 }

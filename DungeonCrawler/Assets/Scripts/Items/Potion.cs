@@ -8,8 +8,7 @@ public class Potion : MonoBehaviour
         HealthPotion
     }
 
-    [SerializeField]
-    private AudioClip clip;
+    private AudioSource audioSrc;
 
     [SerializeField]
     private PotionType type;
@@ -36,6 +35,7 @@ public class Potion : MonoBehaviour
         playerHealth = FindObjectOfType<PlayerHealth>();
         playerMana = FindObjectOfType<PlayerMana>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSrc = GetComponent<AudioSource>();
 
         switch (type)
         {
@@ -61,9 +61,9 @@ public class Potion : MonoBehaviour
                     if (playerMana.CurrentMana != playerMana.MaxMana)
                     {
                         used = true;
-                        AudioSource.PlayClipAtPoint(clip, transform.position);
+                        audioSrc.Play();
                         playerMana.AddMana(manaGain);
-                        Destroy(gameObject);
+                        Destroy(gameObject, audioSrc.clip.length);
                     }
                     break;
 
@@ -71,9 +71,9 @@ public class Potion : MonoBehaviour
                     if (PlayerHealth.CurrentHealth != 6)
                     {
                         used = true;
-                        AudioSource.PlayClipAtPoint(clip, transform.position);
+                        audioSrc.Play();
                         playerHealth.AddHealth(healthGain);
-                        Destroy(gameObject);
+                        Destroy(gameObject, audioSrc.clip.length);
                     }
                     break;
 
