@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sRenderer;
     [SerializeField]
-    private GameObject coin;
+    private GameObject droppedItem;
 
     [SerializeField]
     private int maxHealth = 5;
@@ -89,11 +89,14 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("Dead", true);
         audioSource.Play();
 
-        Vector2 coinPos = transform.position;
-        coinPos.y += 1;
+        if (droppedItem != null)
+        {
+            Vector2 coinPos = transform.position;
+            coinPos.y += 1;
 
-        GameObject newCoin = Instantiate(coin, coinPos, Quaternion.identity);
-        newCoin.GetComponent<Coin>().SetCoinAmount(1);
+            GameObject newCoin = Instantiate(droppedItem, coinPos, Quaternion.identity);
+            newCoin.GetComponent<Coin>().SetCoinAmount(1);
+        }
 
         foreach (CircleCollider2D collider in GetComponents<CircleCollider2D>())
         {

@@ -15,7 +15,7 @@ public class SpawnPoint : MonoBehaviour
     private bool occupied = false;
     public bool Occupied { get { return occupied; } }
 
-    private const float waitTime = 0.25f;
+    private const float waitTime = 0.25f; // Min time = 0.25f
 
     private void Awake()
     {
