@@ -257,9 +257,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1703854004555804833}
   sRenderer: {fileID: 1703854004555804837}
-  coin: {fileID: 756242677504254184, guid: c089e3190822c7d40be80bcc19accbb3, type: 3}
+  droppedItem: {fileID: 756242677504254184, guid: c089e3190822c7d40be80bcc19accbb3, type: 3}
   maxHealth: 7
   poisoned: 0
+  isBoss: 0
 --- !u!114 &1703854005050779139
 MonoBehaviour:
   m_ObjectHideFlags: 0

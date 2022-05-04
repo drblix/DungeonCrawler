@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objContainer: {fileID: 2713145586119415802}
+  bosses:
+  - {fileID: 6718528065890856392, guid: 9103a54b386378346a4e64577785cfd7, type: 3}
   enemies:
   - {fileID: 1703854005050779150, guid: 3bd7ee1a77c92f5498a3a708df17286c, type: 3}
   - {fileID: 146403875507807715, guid: 1d3edb8a0087b9a45ae1ef1622ca289b, type: 3}

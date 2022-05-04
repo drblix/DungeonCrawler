@@ -23,6 +23,9 @@ public class EnemyHealth : MonoBehaviour
 
     public bool poisoned = false;
 
+    [SerializeField]
+    private bool isBoss = false;
+
     private bool dead = false;
     public bool Dead { get { return dead; } }
 
@@ -89,7 +92,7 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("Dead", true);
         audioSource.Play();
 
-        if (droppedItem != null)
+        if (droppedItem != null && !isBoss)
         {
             Vector2 coinPos = transform.position;
             coinPos.y += 1;
@@ -103,6 +106,11 @@ public class EnemyHealth : MonoBehaviour
             collider.enabled = false;
         }
 
+
+        if (isBoss)
+        {
+            GetComponent<BossAI>().Death();
+        }
         /*
 
         yield return new WaitForSeconds(1.5f);

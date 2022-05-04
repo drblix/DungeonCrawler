@@ -8,6 +8,9 @@ public class RoomContentCreator : MonoBehaviour
     private Transform objContainer;
 
     [SerializeField]
+    private GameObject[] bosses;
+
+    [SerializeField]
     private List<GameObject> enemies = new List<GameObject>();
     
     [SerializeField]
@@ -39,7 +42,7 @@ public class RoomContentCreator : MonoBehaviour
 
             if (willSpawnUtilities && chance2 && spawn.gameObject.activeInHierarchy)
             {
-                Instantiate(utilities[Random.Range(0, utilities.Count)], spawn.position, Quaternion.identity);
+                Instantiate(utilities[Random.Range(0, utilities.Count)], spawn.position, Quaternion.identity, objContainer);
                 spawn.gameObject.SetActive(false);
             }
         }
@@ -49,7 +52,11 @@ public class RoomContentCreator : MonoBehaviour
 
     private void GenerateBoss()
     {
+        Debug.Log("Making boss!");
+        Instantiate(bosses[Random.Range(0, bosses.Length)], transform.position, Quaternion.identity, objContainer);
 
+        objContainer.gameObject.SetActive(false);
+        transform.name = "BossRoom";
     }
 
     public void ToggleBossRoom(bool state)

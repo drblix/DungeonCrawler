@@ -59,7 +59,6 @@ public class EnemyArrow : MonoBehaviour
 
             if (playerHealth != null)
             {
-                Debug.Log("Damaging!");
                 playerHealth.RemoveHealth(1);
             }
         }

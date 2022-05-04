@@ -45,7 +45,13 @@ public class RoomCameraHandler : MonoBehaviour
             cameraPos.z = -10f;
 
             plrCamera.LeanMove(cameraPos, 0.75f).setEaseOutSine();
+        }
+    }
 
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if (other.CompareTag("Player"))
+        {
             if (roomObjContainer != null)
             {
                 roomObjContainer.SetActive(true);

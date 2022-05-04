@@ -170,10 +170,7 @@ public class RoomGeneration : MonoBehaviour
         if (creator1 != null)
         {
             creator1.ToggleBossRoom(true);
-            creator1.GenerateContent();
         }
-
-        pathfinder.Scan();
 
         foreach (GameObject room in generatedRooms)
         {
@@ -186,6 +183,7 @@ public class RoomGeneration : MonoBehaviour
         }
 
         // <summary> Finishes loading </summary>
+        pathfinder.Scan();
         loadingScreen.SetActive(false);
         musicObj.SetActive(true);
         FindObjectOfType<Player>().ToggleEnabled(true);
