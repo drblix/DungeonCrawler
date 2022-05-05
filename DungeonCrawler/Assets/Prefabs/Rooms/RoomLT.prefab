@@ -61,6 +61,7 @@ MonoBehaviour:
   utilities:
   - {fileID: 7512983727240779080, guid: 1994da92c51a2c7469a7b9932f5680b8, type: 3}
   - {fileID: 7512983727240779080, guid: 594b979adc79b554faeff36c43a8cfb7, type: 3}
+  - {fileID: 8592143894000095556, guid: 7fde2bae3c1ccfc4eb5ec8753460e55e, type: 3}
   spawnPoints:
   - {fileID: 7468869624654691640}
   - {fileID: 373678720996988001}
@@ -574,6 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrier: {fileID: 6155964976645692121}
   isStarterRoom: 0
+  numEnemies: 0
 --- !u!1 &8033806177524940688
 GameObject:
   m_ObjectHideFlags: 0

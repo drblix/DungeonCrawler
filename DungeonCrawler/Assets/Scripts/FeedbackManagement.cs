@@ -55,7 +55,6 @@ public class FeedbackManagement : MonoBehaviour
             Debug.Log("Form has successfully been submitted!");
             feedbackField.GetComponentInChildren<TextMeshProUGUI>().color = Color.green;
             feedbackField.text = "Form has been successfully submitted! Thanks you for your feedback :)";
-            yield return new WaitForSeconds(2f);
         }
         else
         {
@@ -63,8 +62,9 @@ public class FeedbackManagement : MonoBehaviour
 
             feedbackField.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
             feedbackField.text = "Form could not be submitted! Check your network connection.";
-            yield return new WaitForSeconds(2f);
         }
+
+        yield return new WaitForSeconds(2f);
 
         feedbackField.GetComponentInChildren<TextMeshProUGUI>().color = oldColor;
 

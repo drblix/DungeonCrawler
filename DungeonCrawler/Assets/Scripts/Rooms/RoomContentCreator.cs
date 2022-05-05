@@ -25,8 +25,22 @@ public class RoomContentCreator : MonoBehaviour
     {
         if (isBossRoom) { GenerateBoss(); return; }
 
-        bool willMakeEnemies = Random.Range(1, 100) < 50; // 50% chance to make enemies
-        bool willSpawnUtilities = Random.Range(1, 100) < 20; // 20% chance to spawn potions etc.
+        int num = Random.Range(1, 100); 
+        bool willMakeEnemies;
+        bool willSpawnUtilities;
+
+        if (num > 25) // 75% chance to spawn enemies, 25% chance to spawn potions, etc.
+        {
+            willMakeEnemies = true;
+            willSpawnUtilities = false;
+        }
+        else
+        {
+            willSpawnUtilities = true;
+            willMakeEnemies = false;
+        }
+        //bool willMakeEnemies = Random.Range(1, 100) < 50; // 50% chance to make enemies
+        //bool willSpawnUtilities = Random.Range(1, 100) < 30; // 30% chance to spawn potions etc.
         
         foreach (Transform spawn in spawnPoints)
         {

@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrier: {fileID: 2845924071960371105}
   isStarterRoom: 0
+  numEnemies: 0
 --- !u!1 &661216692035655080
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +172,7 @@ MonoBehaviour:
   utilities:
   - {fileID: 7512983727240779080, guid: 1994da92c51a2c7469a7b9932f5680b8, type: 3}
   - {fileID: 7512983727240779080, guid: 594b979adc79b554faeff36c43a8cfb7, type: 3}
+  - {fileID: 8592143894000095556, guid: 7fde2bae3c1ccfc4eb5ec8753460e55e, type: 3}
   spawnPoints:
   - {fileID: 3012598063301765760}
   - {fileID: 8049522540916166195}

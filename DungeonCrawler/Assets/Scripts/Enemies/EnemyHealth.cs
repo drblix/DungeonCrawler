@@ -84,7 +84,15 @@ public class EnemyHealth : MonoBehaviour
     private void Death()
     {
         // aiPath.canMove = false;
-        transform.parent.parent.GetComponentInChildren<RoomCameraHandler>().EnemyDied();
+        if (transform.name != "Boss")
+        {
+            transform.parent.parent.GetComponentInChildren<RoomCameraHandler>().EnemyDied();
+        }
+        else
+        {
+            transform.parent.parent.parent.GetComponentInChildren<RoomCameraHandler>().EnemyDied();
+        }
+        
         Destroy(aiPath);
         Destroy(seeker);
         Destroy(setter);

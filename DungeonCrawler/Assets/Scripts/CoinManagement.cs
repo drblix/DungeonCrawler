@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CoinManagement : MonoBehaviour
@@ -11,8 +12,13 @@ public class CoinManagement : MonoBehaviour
     private static int currentCoins = 0;
     public static int CurrentCoins { get { return currentCoins; } }
 
-    private void Update()
+    private void Awake() 
     {
+        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            currentCoins = 0;
+        }
+
         coinText.text = currentCoins.ToString();
     }
 
@@ -22,7 +28,7 @@ public class CoinManagement : MonoBehaviour
 
         if (currentCoins > maxCoins) { currentCoins = maxCoins; }
 
-        coinText.text = amount.ToString();
+        coinText.text = currentCoins.ToString();
     }
 
     public void RemoveCoins(int amount)
@@ -31,11 +37,6 @@ public class CoinManagement : MonoBehaviour
 
         if (currentCoins > maxCoins) { currentCoins = maxCoins; }
 
-        coinText.text = amount.ToString();
-    }
-
-    public static void ResetCurrency()
-    {
-        currentCoins = 0;
+        coinText.text = currentCoins.ToString();
     }
 }

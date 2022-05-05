@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && canShoot)
         {
-            if (playerMana.RemoveMana(5f))
+            if (playerMana.RemoveMana(7f))
             {
                 canShoot = false;
                 StartCoroutine(ShootProjectile());
