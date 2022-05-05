@@ -13,7 +13,7 @@ public class RoomGeneration : MonoBehaviour
     private GameObject loadingScreen;
 
     [SerializeField]
-    private GameObject musicObj;
+    private AudioSource musicPlayer;
 
     [Header("Rooms")]
 
@@ -54,8 +54,6 @@ public class RoomGeneration : MonoBehaviour
             if (doneLoading) { return null; }
 
             doneLoading = true;
-            StopCoroutine(LoadingCleanup(0f));
-            StartCoroutine(LoadingCleanup(0f));
             return null;
         }
 
@@ -107,6 +105,8 @@ public class RoomGeneration : MonoBehaviour
 
     private IEnumerator LoadingCleanup(float delay)
     {
+        Debug.Log("Starting coroutine!");
+
         yield return new WaitForSeconds(delay);
 
         // Gives time for trigger colliders to register
@@ -185,7 +185,7 @@ public class RoomGeneration : MonoBehaviour
         // <summary> Finishes loading </summary>
         pathfinder.Scan();
         loadingScreen.SetActive(false);
-        musicObj.SetActive(true);
+        musicPlayer.Play();
         FindObjectOfType<Player>().ToggleEnabled(true);
     }
 }

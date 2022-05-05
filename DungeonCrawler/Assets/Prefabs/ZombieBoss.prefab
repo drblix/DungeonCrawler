@@ -173,7 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatePart: {fileID: 6718528063945651743}
   bossProjectile: {fileID: 320963665021736360, guid: 34b2d8c07b5578444bfe829047c12cdd, type: 3}
-  musicSource: {fileID: 0}
   bossMusic: {fileID: 8300000, guid: 1b6736d44afe85646ad4c22fabaab9cf, type: 3}
   roomCollider: {fileID: 6718528064029803703}
   sparkEffect: {fileID: 6718528063918779389}
@@ -10272,7 +10271,7 @@ GameObject:
   - component: {fileID: 6718528065890856393}
   m_Layer: 0
   m_Name: ZombieBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

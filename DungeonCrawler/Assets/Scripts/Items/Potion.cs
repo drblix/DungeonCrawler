@@ -61,6 +61,7 @@ public class Potion : MonoBehaviour
                     if (playerMana.CurrentMana != playerMana.MaxMana)
                     {
                         used = true;
+                        spriteRenderer.enabled = false;
                         audioSrc.Play();
                         playerMana.AddMana(manaGain);
                         Destroy(gameObject, audioSrc.clip.length);
@@ -68,9 +69,10 @@ public class Potion : MonoBehaviour
                     break;
 
                 case PotionType.HealthPotion:
-                    if (PlayerHealth.CurrentHealth != 6)
+                    if (FindObjectOfType<PlayerHealth>().CurrentHealth != 6)
                     {
                         used = true;
+                        spriteRenderer.enabled = false;
                         audioSrc.Play();
                         playerHealth.AddHealth(healthGain);
                         Destroy(gameObject, audioSrc.clip.length);

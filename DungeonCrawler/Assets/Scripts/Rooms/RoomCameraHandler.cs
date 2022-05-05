@@ -8,10 +8,20 @@ public class RoomCameraHandler : MonoBehaviour
     private GameObject roomObjContainer;
 
     [SerializeField]
+    private EdgeCollider2D barrier;
+
+    [SerializeField]
     private bool isStarterRoom = false;
+
+    private static bool canMoveRooms = true;
+
+    [SerializeField]
+    int numEnemies = 0;
 
     private void Awake() 
     {
+        canMoveRooms = true;
+        
         plrCamera = Camera.main.transform;
 
         if (!isStarterRoom)
@@ -34,11 +44,63 @@ public class RoomCameraHandler : MonoBehaviour
         }
     }
 
+    public void ContentGenerated()
+    {
+        foreach (Transform child in roomObjContainer.transform)
+        {
+            if (child.CompareTag("Enemy"))
+            {
+                numEnemies++;
+            }
+        }
+    }
+
+    private IEnumerator CheckEnemies()
+    {
+        while (numEnemies > 0)
+        {
+            /*
+            foreach (Transform child in roomObjContainer.transform)
+            {
+                if (child.CompareTag("Enemy"))
+                {
+                    EnemyHealth enemyHealth = child.gameObject.GetComponent<EnemyHealth>();
+
+                    if (enemyHealth.Dead)
+                    {
+                        numEnemies--;
+                    }
+                }
+            }
+            */
+
+            Debug.Log(numEnemies);
+            yield return new WaitForSeconds(1f);
+        }
+
+        canMoveRooms = true;
+        barrier.enabled = false;
+    }
+
+    public void EnemyDied()
+    {
+        numEnemies--;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && canMoveRooms)
         {
-            Debug.Log("Moving camera!");
+            if (!isStarterRoom)
+            {
+                if (numEnemies > 0)
+                {
+                    canMoveRooms = false;
+                    barrier.enabled = true;
+
+                    StartCoroutine(CheckEnemies());
+                }
+            }
 
             Vector3 cameraPos = transform.position;
             cameraPos.y += 1f;
@@ -61,7 +123,7 @@ public class RoomCameraHandler : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && canMoveRooms)
         {
             if (roomObjContainer != null)
             {

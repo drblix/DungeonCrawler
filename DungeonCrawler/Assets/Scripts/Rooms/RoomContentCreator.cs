@@ -48,6 +48,8 @@ public class RoomContentCreator : MonoBehaviour
         }
 
         objContainer.gameObject.SetActive(false);
+
+        GetComponentInChildren<RoomCameraHandler>().ContentGenerated();
     }
 
     private void GenerateBoss()
@@ -57,6 +59,8 @@ public class RoomContentCreator : MonoBehaviour
 
         objContainer.gameObject.SetActive(false);
         transform.name = "BossRoom";
+
+        GetComponentInChildren<RoomCameraHandler>().ContentGenerated();
     }
 
     public void ToggleBossRoom(bool state)

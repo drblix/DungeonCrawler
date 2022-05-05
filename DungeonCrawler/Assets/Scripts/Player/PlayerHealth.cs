@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource source;
 
     private const int maxHealth = 6;
-    private static int currentHealth = 6;
-    public static int CurrentHealth { get { return currentHealth; } }
+    private int currentHealth = 6;
+    public int CurrentHealth { get { return currentHealth; } }
 
     private bool canDamage = true;
 
@@ -29,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         pSystem = GetComponent<ParticleSystem>();
         source = GetComponent<AudioSource>();
+
+        currentHealth = maxHealth;
 
         heart01 = GameObject.Find("Heart1").GetComponent<Image>();
         heart02 = GameObject.Find("Heart2").GetComponent<Image>();

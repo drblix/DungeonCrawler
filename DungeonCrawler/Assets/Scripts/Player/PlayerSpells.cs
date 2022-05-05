@@ -69,7 +69,7 @@ public class PlayerSpells : MonoBehaviour
         for (int i = 0; i < 12; i++)
         {
             circleRotater.RotateAround(transform.position, Vector3.forward, 30f);
-            PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.MagicMissile, 1);
+            PlayerProjectile newMissile = PlayerProjectile.Create(PlayerProjectile.MissileType.MagicMissile, 2);
             newMissile.transform.SetPositionAndRotation(circleRotater.position, circleRotater.rotation);
             yield return new WaitForSeconds(0.02f);
         }

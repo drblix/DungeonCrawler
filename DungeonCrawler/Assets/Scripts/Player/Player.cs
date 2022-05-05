@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private bool canShoot = true;
 
-    private const float shootCooldown = 0.2f;
+    private const float shootCooldown = 0.35f;
 
     private bool playerEnabled = true;
     public bool PlayerEnabled { get { return playerEnabled; } }
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
 
     private void InputCheck()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot)
+        if (Input.GetKey(KeyCode.Space) && canShoot)
         {
             if (playerMana.RemoveMana(5f))
             {

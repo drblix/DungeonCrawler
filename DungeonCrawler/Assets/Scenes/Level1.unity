@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &79754102
 AudioSource:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dbee0d7f28eb180428c4f33f79e0dc22, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774799, y: 1}
+    m_SensorSize: {x: 1.7769784, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+upX6TAXwIAABUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVEtz2jAQ/iuMziVjiAlDby2v9EBgQju5+CKkNdYgSx5J5pEM/70r2caue2L59tvdbx/yFxHKFsCcNmsj+EZzIN8HxNvk26B1vsKVHrXai09oOB+Cu8yTaOC8Uyc04iMfZnUOzgj2Qx2lJ0cIlkqk2uRLfoS5ts4inFJpAV1GOx+tEPoakCv+DGc+5IbWeOqtT7Rm0eCOJgPlwLTU6GlSUxtixSsVkzQvgHvRLX08eWSOJ4GosKGa48UzLaWwtRribkXodl9kYMC3ywXF5oKC6GmGQAbimDmfsBu9TVMLrlZl6G0hDE6pSkt+6mp0ObWnStqZytIXeomDpirn5j/3cBTcqdH5a1N2FPkSLhPs9E5vjFrXGW0XXrTKR2FAFypP9CDhIwP1ptdGl4qj05nSh5YWxov276OzeQbs1OKV1B5YFp0F9dbje7iH5q9zKfJDGGRcAXupw7zD+sHgZn6h4HActk6BqFfxx8JveuxeUe1YCWMduuoulZd30KXxVLJCww+elW6ujYKA1poLUFS62w6zuP4Ce75O1Z5nRf1zqWvXvuYV9EIC3PKjqOfa6ctjVzbTlw3YbFs6KRS0or3jDcc010pV99UdSRO2L01KWSfsWAr+72UReIHn8ZjTeMxZNJ1Nh5xOWDyN4+khnqUweSbh9ITCPqncVULr8eDSVJtc4Zk1X5HB2tAi3Do39LIWn7nujFyoVO+ZAVDbKsNDOBgsgo+SL7nAAe3BOaHCuslXQqRmJ+DJI1ESOl1enaFJmyUhhThr55GEzMNnIyEefpzyzsBZwMUXb5Ldyf0vUEsDBBQAAAgIAACYn+tHbFJtbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSqlmqsZFRSqKJUUqygbmluW5KommyibmJiXmSiWVaqqmxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+upX6TAXwIAABUFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+tHbFJtbQAAAHgAAAAJACQAAAAAAAAAAAAAAKwCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZAMAAAAA
+    dataString: UEsDBBQAAAgIAACYn+uls4jcXwIAABUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMzk3GgAnj3loIpIcEJrSTiy9CWmMNsuSR5PCR4b93JdvYdU8sb9/uvv2Qv4hQtgTmtFkbwV81B/J9RLxNvo065wuc6UGrnbhCy/kQ3OWeRAPnnTqhER/7MKsLcEawH+ogPTlCsFIi06Z45gdYaOsswhmVFtBltPPRCqGvETnjz0PiQy5oTebeuqKVRKMbmgyUA9NRo8dZQ22JNa9STNKiBO5Fd/RpdM+cJIGosKGG48UzLaWwjRriLmXodlfmYMC3ywXF5oKC6DFBIAdxyJ1P2I/eZJkF16gy9LIUBqdUpyU/dT26gtpjLe2TysoXeoqDpjrn63/uh3FwZ0YXL23ZcejI5YId3+mFUet6o+3Dy075OAzoROWR7iV85KDe9NroSnF0OlP50MrCZNn9vXe2yIEdO7yWOgCrsregwXp8D7fQ/HkhRbEPg4xrYCd1mHdYPxjczC8UHI7DNikQ9Sr+WPhND/0rahwrYaxDV9Ol8vL2ujKeSlZo+MGzyi20URDQRnMJikp32WIWN1zgwNerOvCsqH8uTe3G176CQUiAO34UDVxbfbrvyub69Ao231ROCgWdaO94wzEttFL1ffVH0obtKpNR1gs7VIL/e1kEnmA6mXAaTziL5sn8gdMZi+dxPN/HSQazKQmnJxT2SeW2FtqMB5emuuQKz6z9iozWhpbh1rmhp7W4Fro3cqEyvWMGQG3qDHfhYLAIPkr+zAUOaAfOCRXWTb5SIjU7Ak/vidLQ6fPZGZp2WVJSik/tPJKSRfhspMTD91PeGvgUcPLF22Q3cvsLUEsDBBQAAAgIAACYn+tHbFJtbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSqlmqsZFRSqKJUUqygbmluW5KommyibmJiXmSiWVaqqmxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+uls4jcXwIAABUFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+tHbFJtbQAAAHgAAAAJACQAAAAAAAAAAAAAAKwCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZAMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1870,6 +1870,10 @@ PrefabInstance:
       propertyPath: musicObj
       value: 
       objectReference: {fileID: 79754101}
+    - target: {fileID: 7474403983248449451, guid: 49e4cc1679ccc434cb91cf0f9abb9254, type: 3}
+      propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 79754102}
     - target: {fileID: 7474403983248449451, guid: 49e4cc1679ccc434cb91cf0f9abb9254, type: 3}
       propertyPath: loadingScreen
       value: 
