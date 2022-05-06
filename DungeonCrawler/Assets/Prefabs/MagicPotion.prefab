@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5295157358002204246}
   - component: {fileID: 349657814676471009}
   - component: {fileID: 8655472597605499909}
+  - component: {fileID: 201119727373464201}
   m_Layer: 0
   m_Name: MagicPotion
   m_TagString: Pickup
@@ -225,3 +226,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &201119727373464201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512983727240779080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88972879c787c1d4991a6b96804d9440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 5

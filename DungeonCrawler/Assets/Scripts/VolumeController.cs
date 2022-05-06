@@ -15,21 +15,26 @@ public class VolumeController : MonoBehaviour
     {
         player = FindObjectOfType<Player>().transform;
         audioSource = GetComponent<AudioSource>();
+
+        if (PlayerSettings.disabledSFX)
+        {
+            audioSource.volume = 0f;
+        }
     }
 
     private void Update()
     {
         float distance = Vector2.Distance(player.position, transform.position);
 
-        if (distance < minDistance)
+        if (distance < minDistance && !PlayerSettings.disabledSFX)
         {
             audioSource.volume = 1f;
         }
-        else if (distance > maxDistance)
+        else if (distance > maxDistance && !PlayerSettings.disabledSFX)
         {
             audioSource.volume = 0f;
         }
-        else
+        else if (!PlayerSettings.disabledSFX)
         {
             audioSource.volume = 1f - ((distance - minDistance) / (maxDistance - minDistance));
         }

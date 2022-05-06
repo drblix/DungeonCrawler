@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {   
@@ -12,6 +13,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Toggle sfxToggle;
 
+    [SerializeField]
+    private TMP_InputField seedInput;
+
     const float scaleTime = 0.2f;
     
     private void Start() 
@@ -23,6 +27,26 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        if (!string.IsNullOrEmpty(seedInput.text))
+        {   
+            int seed;
+
+            if (int.TryParse(seedInput.text, out int result))
+            {
+                seed = result;
+                RoomGeneration.SetGenerationSeed(seed);
+            }
+            else
+            {
+                Debug.LogError("Inputted seed could not be parsed into an integer!");
+                RoomGeneration.RandomGenerationSeed();
+            }
+        }
+        else
+        {
+            RoomGeneration.RandomGenerationSeed();
+        }
+
         SceneTransitioner.CreateTransition(3, Vector2.zero);
     }
 

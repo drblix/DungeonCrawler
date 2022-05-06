@@ -40,6 +40,11 @@ public class TextNotification : MonoBehaviour
         canvas.worldCamera = Camera.main;
         canvas.planeDistance = 0.2f;
         canvas.sortingLayerID = SortingLayer.NameToID("UI");
+
+        if (PlayerSettings.disableNotiSound)
+        {
+            audioSource.volume = 0f;
+        }
     }
 
     private void Update()

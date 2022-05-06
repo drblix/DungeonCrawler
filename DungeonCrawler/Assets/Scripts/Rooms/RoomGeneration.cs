@@ -32,11 +32,24 @@ public class RoomGeneration : MonoBehaviour
 
     public List<GameObject> generatedRooms = new List<GameObject>();
 
+    private static int generationSeed;
+    public static int GenerationSeed { get { return generationSeed; } }
+
     private const int minimumRooms = 6;
     private const int maximumRooms = 25;
 
+    private static bool usingRandomSeed = true;
+
     bool doneLoading = false;
     public bool DoneLoading { get { return doneLoading; } }
+
+    private void Awake() 
+    {
+        if (!usingRandomSeed)
+        {
+            Random.InitState(generationSeed);
+        }
+    }
 
     private void Start()
     {
@@ -187,5 +200,17 @@ public class RoomGeneration : MonoBehaviour
         loadingScreen.SetActive(false);
         musicPlayer.Play();
         FindObjectOfType<Player>().ToggleEnabled(true);
+    }
+
+    public static void SetGenerationSeed(int newSeed)
+    {
+        usingRandomSeed = false;
+        generationSeed = newSeed;
+    }
+
+    public static void RandomGenerationSeed()
+    {
+        usingRandomSeed = true;
+        Random.InitState((int)System.DateTime.Now.Ticks);
     }
 }

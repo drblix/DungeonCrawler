@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5295157358002204246}
   - component: {fileID: 349657814676471009}
   - component: {fileID: 8544766074479742472}
+  - component: {fileID: 7386762537204130970}
   m_Layer: 0
   m_Name: HealthPotion
   m_TagString: Pickup
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08a76fcbd28eb6438dcfe5a97978c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 42b22938cc0108447aef935f8bc12461, type: 3}
   type: 1
   manaGain: 40
   healthGain: 1
@@ -226,3 +226,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7386762537204130970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512983727240779080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88972879c787c1d4991a6b96804d9440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 5
