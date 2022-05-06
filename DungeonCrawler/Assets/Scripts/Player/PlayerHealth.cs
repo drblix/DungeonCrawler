@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource source;
 
     private const int maxHealth = 6;
+
+    [SerializeField]
     private int currentHealth = 6;
     public int CurrentHealth { get { return currentHealth; } }
 
@@ -106,66 +108,66 @@ public class PlayerHealth : MonoBehaviour
         switch (currentHealth)
         {
             case 6:
-                heart01.GetComponent<Animator>().SetBool("Broken", false);
                 heart01.gameObject.SetActive(true);
-                heart02.GetComponent<Animator>().SetBool("Broken", false);
+                heart01.GetComponent<Animator>().SetBool("Broken", false);
                 heart02.gameObject.SetActive(true);
-                heart03.GetComponent<Animator>().SetBool("Broken", false);
+                heart02.GetComponent<Animator>().SetBool("Broken", false);
                 heart03.gameObject.SetActive(true);
+                heart03.GetComponent<Animator>().SetBool("Broken", false);
                 break;
 
             case 5:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(true);
-                heart02.GetComponent<Animator>().SetBool("Broken", false);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(true);
-                heart03.GetComponent<Animator>().SetBool("Broken", false);
+                heart02.GetComponent<Animator>().SetBool("Broken", false);
                 heart03.gameObject.SetActive(true);
+                heart03.GetComponent<Animator>().SetBool("Broken", false);
                 break;
 
             case 4:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(false);
-                heart02.GetComponent<Animator>().SetBool("Broken", false);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(true);
                 heart03.GetComponent<Animator>().SetBool("Broken", false);
                 heart03.gameObject.SetActive(true);
+                heart02.GetComponent<Animator>().SetBool("Broken", false);
                 break;
 
             case 3:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(false);
-                heart02.GetComponent<Animator>().SetBool("Broken", true);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(true);
-                heart03.GetComponent<Animator>().SetBool("Broken", false);
+                heart02.GetComponent<Animator>().SetBool("Broken", true);
                 heart03.gameObject.SetActive(true);
+                heart03.GetComponent<Animator>().SetBool("Broken", false);
                 break;
 
             case 2:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(false);
-                heart02.GetComponent<Animator>().SetBool("Broken", true);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(false);
                 heart03.GetComponent<Animator>().SetBool("Broken", false);
                 heart03.gameObject.SetActive(true);
+                heart02.GetComponent<Animator>().SetBool("Broken", true);
                 break;
 
             case 1:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(false);
-                heart02.GetComponent<Animator>().SetBool("Broken", true);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(false);
                 heart03.GetComponent<Animator>().SetBool("Broken", true);
                 heart03.gameObject.SetActive(true);
+                heart02.GetComponent<Animator>().SetBool("Broken", true);
                 break;
 
             case 0:
-                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart01.gameObject.SetActive(false);
-                heart02.GetComponent<Animator>().SetBool("Broken", true);
+                heart01.GetComponent<Animator>().SetBool("Broken", true);
                 heart02.gameObject.SetActive(false);
                 heart03.GetComponent<Animator>().SetBool("Broken", true);
                 heart03.gameObject.SetActive(false);
+                heart02.GetComponent<Animator>().SetBool("Broken", true);
                 break;
         }
     }

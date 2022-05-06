@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseMenu;
+
+    [SerializeField]
+    private TextMeshProUGUI seedLabel;
 
     private RoomGeneration roomGeneration;
 
@@ -14,6 +18,15 @@ public class PauseMenu : MonoBehaviour
     private void Awake() 
     {
         roomGeneration = FindObjectOfType<RoomGeneration>();
+
+        if (!RoomGeneration.UsingRandomSeed)
+        {
+            seedLabel.SetText("Seed: " + RoomGeneration.GenerationSeed.ToString());
+        }
+        else
+        {
+            seedLabel.SetText("Seed: " + (int)System.DateTime.Now.Ticks);
+        }
     }
 
     private void Update() 
@@ -22,7 +35,11 @@ public class PauseMenu : MonoBehaviour
         {
             if (roomGeneration != null)
             {
-                if (!roomGeneration.DoneLoading) { return; }
+                if (!roomGeneration.DoneLoading) 
+                { 
+                    SceneTransitioner.CreateTransition(0, Vector2.zero); 
+                    return; 
+                }
             }
             
             FindObjectOfType<Player>().ToggleEnabled(false);

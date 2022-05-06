@@ -39,6 +39,7 @@ public class RoomGeneration : MonoBehaviour
     private const int maximumRooms = 25;
 
     private static bool usingRandomSeed = true;
+    public static bool UsingRandomSeed { get { return usingRandomSeed; } }
 
     bool doneLoading = false;
     public bool DoneLoading { get { return doneLoading; } }
