@@ -25,7 +25,7 @@ public class FeedbackManagement : MonoBehaviour
         string nameTxt = nameField.text;
         string feedbackTxt = feedbackField.text;
 
-        if (!string.IsNullOrEmpty(feedbackTxt) && !string.IsNullOrWhiteSpace(feedbackTxt))
+        if (!string.IsNullOrEmpty(feedbackTxt) && !string.IsNullOrWhiteSpace(feedbackTxt) && feedbackTxt.Length > 50)
         {
             StartCoroutine(Submit(nameTxt, feedbackTxt));
         }

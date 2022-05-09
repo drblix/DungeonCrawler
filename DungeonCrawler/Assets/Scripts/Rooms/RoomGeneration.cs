@@ -198,6 +198,7 @@ public class RoomGeneration : MonoBehaviour
 
         // <summary> Finishes loading </summary>
         pathfinder.Scan();
+        doneLoading = true;
         loadingScreen.SetActive(false);
         musicPlayer.Play();
         FindObjectOfType<Player>().ToggleEnabled(true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Pathfinding;
 
 public class PlayerHealth : MonoBehaviour
@@ -24,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
     private bool canDamage = true;
 
+    public static bool godMode = false;
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -39,10 +42,17 @@ public class PlayerHealth : MonoBehaviour
         heart03 = GameObject.Find("Heart3").GetComponent<Image>();
 
         UpdateUI();
+
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            godMode = false;
+        }
     }
 
     public void AddHealth(int amount)
     {
+        if (godMode) { return; }
+
         currentHealth += Mathf.Abs(amount);
 
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
@@ -52,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void RemoveHealth(int amount)
     {
-        if (!canDamage) { return; }
+        if (!canDamage || godMode) { return; }
         canDamage = false;
 
         currentHealth -= Mathf.Abs(amount);

@@ -34,6 +34,8 @@ public class ShopManagement : MonoBehaviour
 
     const float scaleTime = 0.2f;
 
+    public static bool freeShopItems = false;
+
     private void Awake() 
     {
         coinManager = FindObjectOfType<CoinManagement>();
@@ -49,33 +51,77 @@ public class ShopManagement : MonoBehaviour
 
     public void PurchaseHealthPot()
     {
-        if (CoinManagement.CurrentCoins >= healthPotPrice && healthPotQuantity > 0)
+        if (!freeShopItems)
         {
-            healthPotQuantity--;
-            Vector3 playerPos = FindObjectOfType<Player>().transform.position;
+            if (CoinManagement.CurrentCoins >= healthPotPrice && healthPotQuantity > 0)
+            {
+                healthPotQuantity--;
+                Vector3 playerPos = FindObjectOfType<Player>().transform.position;
 
-            coinManager.RemoveCoins(healthPotPrice);
-            Instantiate(healthPotion, playerPos, Quaternion.identity);
+                if (!freeShopItems)
+                {
+                    coinManager.RemoveCoins(healthPotPrice);
+                }
+
+                Instantiate(healthPotion, playerPos, Quaternion.identity);
+            }
+            else if (healthPotQuantity <= 0)
+            {
+                healthOoS.SetActive(true);
+            }
         }
-        else if (healthPotQuantity <= 0)
+        else
         {
-            healthOoS.SetActive(true);
+            if (healthPotQuantity > 0)
+            {
+                healthPotQuantity--;
+                Vector3 playerPos = FindObjectOfType<Player>().transform.position;
+
+                Instantiate(healthPotion, playerPos, Quaternion.identity);
+            }
+
+            if (healthPotQuantity <= 0)
+            {
+                healthOoS.SetActive(true);
+            }
         }
     }
 
     public void PurchaseManaPot()
     {
-        if (CoinManagement.CurrentCoins >= manaPotPrice && manaPotQuantity > 0)
+        if (!freeShopItems)
         {
-            manaPotQuantity--;
-            Vector3 playerPos = FindObjectOfType<Player>().transform.position;
+            if (CoinManagement.CurrentCoins >= manaPotPrice && manaPotQuantity > 0)
+            {
+                manaPotQuantity--;
+                Vector3 playerPos = FindObjectOfType<Player>().transform.position;
 
-            coinManager.RemoveCoins(manaPotPrice);
-            Instantiate(manaPotion, playerPos, Quaternion.identity);
+                if (!freeShopItems)
+                {
+                    coinManager.RemoveCoins(manaPotPrice);
+                }
+
+                Instantiate(manaPotion, playerPos, Quaternion.identity);
+            }
+            else if (manaPotQuantity <= 0)
+            {
+                manaOoS.SetActive(true);
+            }
         }
-        else if (manaPotQuantity <= 0)
+        else
         {
-            manaOoS.SetActive(true);
+            if (manaPotQuantity > 0)
+            {
+                manaPotQuantity--;
+                Vector3 playerPos = FindObjectOfType<Player>().transform.position;
+
+                Instantiate(manaPotion, playerPos, Quaternion.identity);
+            }
+
+            if (manaPotQuantity <= 0)
+            {
+                manaOoS.SetActive(true);
+            }
         }
     }
 

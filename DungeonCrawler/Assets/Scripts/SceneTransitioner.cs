@@ -17,6 +17,8 @@ public class SceneTransitioner : MonoBehaviour
 
     private int loadingSceneIndex = 0;
 
+    public static bool transitioning = false;
+
     private void Awake() 
     {
         if (FindObjectsOfType<SceneTransitioner>().Length > 1)
@@ -47,7 +49,9 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator Transition()
     {
+        transitioning = true;
         yield return new WaitForSeconds(2f);
+        transitioning = false;
         Destroy(transform.parent.gameObject);
     }
 }

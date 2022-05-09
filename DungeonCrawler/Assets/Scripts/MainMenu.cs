@@ -27,20 +27,19 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerHealth.godMode = false;
+        PlayerMana.unlimitedMana = false;
+        Player.shootCooldown = 0.35f;
+        ShopManagement.freeShopItems = false;
+        // Reverts all cheats that could've carried over
+
         if (!string.IsNullOrEmpty(seedInput.text))
         {   
             int seed;
 
-            if (int.TryParse(seedInput.text, out int result))
-            {
-                seed = result;
-                RoomGeneration.SetGenerationSeed(seed);
-            }
-            else
-            {
-                Debug.LogError("Inputted seed could not be parsed into an integer!");
-                RoomGeneration.RandomGenerationSeed();
-            }
+            seed = seedInput.text.GetHashCode();
+
+            RoomGeneration.SetGenerationSeed(seed);
         }
         else
         {
@@ -82,6 +81,11 @@ public class MainMenu : MonoBehaviour
         PlayerSettings.disabledSFX = state;
     }
 
+    public void ToggleCheats(bool state)
+    {
+        PlayerSettings.cheatsEnabled = state;
+    }
+
     public void ModifyVolume(float num)
     {
         AudioListener.volume = num;
@@ -92,4 +96,5 @@ public class PlayerSettings
 {
     public static bool disableNotiSound = false;
     public static bool disabledSFX = false;
+    public static bool cheatsEnabled = false;
 }

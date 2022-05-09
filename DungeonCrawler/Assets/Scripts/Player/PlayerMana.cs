@@ -15,10 +15,12 @@ public class PlayerMana : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI manaText;
 
+    public static bool unlimitedMana = false;
+
     private void Awake()
     {
         currentMana = maxMana;
-        StartCoroutine(RegenMana());
+        //StartCoroutine(RegenMana());
     }
 
     /// <summary>
@@ -26,8 +28,25 @@ public class PlayerMana : MonoBehaviour
     /// </summary>
     /// <param name="amount">Amount of mana to remove</param>
     /// <returns>Returns true if player has enough mana, false if not</returns>
+    private void Update() 
+    {
+        if (currentMana < maxMana)
+            {
+                currentMana += 0.05f * Time.deltaTime * 60f;
+
+                if (currentMana > maxMana)
+                {
+                    currentMana = maxMana;
+                }
+
+                UpdateDisplay();
+            }
+    }
+
     public bool RemoveMana(float amount)
     {
+        if (unlimitedMana) { return true; }
+
         if (Mathf.Abs(amount) > currentMana) { Debug.Log("Not enough mana!"); return false; }
 
         currentMana -= Mathf.Abs(amount);
@@ -36,6 +55,8 @@ public class PlayerMana : MonoBehaviour
 
     public void AddMana(float amount)
     {
+        if (unlimitedMana) { return; }
+
         currentMana += Mathf.Abs(amount);
 
         if (currentMana > maxMana)
@@ -54,6 +75,7 @@ public class PlayerMana : MonoBehaviour
         manaText.SetText(Mathf.RoundToInt(currentMana).ToString());
     }
 
+    /*
     private IEnumerator RegenMana()
     {
         while (true)
@@ -73,4 +95,5 @@ public class PlayerMana : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
     }
+    */
 }

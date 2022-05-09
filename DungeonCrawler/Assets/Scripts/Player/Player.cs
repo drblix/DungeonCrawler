@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private bool canShoot = true;
 
-    private const float shootCooldown = 0.35f;
+    public static float shootCooldown = 0.35f; // Default 0.35f
 
     private bool playerEnabled = true;
     public bool PlayerEnabled { get { return playerEnabled; } }

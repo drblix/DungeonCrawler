@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PauseMenu : MonoBehaviour
@@ -10,6 +11,9 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI seedLabel;
+
+    [SerializeField]
+    private TextMeshProUGUI cheatsLabel;
 
     private RoomGeneration roomGeneration;
 
@@ -23,15 +27,28 @@ public class PauseMenu : MonoBehaviour
         {
             seedLabel.SetText("Seed: " + RoomGeneration.GenerationSeed.ToString());
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            seedLabel.SetText("Seed: N/A");
+        }
         else
         {
             seedLabel.SetText("Seed: " + (int)System.DateTime.Now.Ticks);
+        }
+
+        if (PlayerSettings.cheatsEnabled)
+        {
+            cheatsLabel.SetText("Cheats enabled: <color=\"green\">Yes");
+        }
+        else
+        {
+            cheatsLabel.SetText("Cheats enabled: <color=\"red\">No");
         }
     }
 
     private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !SceneTransitioner.transitioning)
         {
             if (roomGeneration != null)
             {
@@ -58,6 +75,6 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneTransitioner.CreateTransition(0, Vector2.zero);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
