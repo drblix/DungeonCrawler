@@ -9330,6 +9330,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 1810779416}
   textNotiToggle: {fileID: 1937776771}
   sfxToggle: {fileID: 1163330869}
+  cheatsToggle: {fileID: 1136717031}
   seedInput: {fileID: 696246322}
 --- !u!1 &2023373794
 GameObject:

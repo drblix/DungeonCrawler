@@ -1181,6 +1181,30 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[1].Array.data[16].Y
       value: 32500000
       objectReference: {fileID: 0}
+    - target: {fileID: 8828554995336725142, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.b
+      value: 0.47843137
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828554995336725142, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828554995336725142, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828554996155696197, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828554996155696197, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828554996155696197, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6431373
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a3875b4596c4a47aa6bb713b662999, type: 3}
 --- !u!4 &327687711 stripped

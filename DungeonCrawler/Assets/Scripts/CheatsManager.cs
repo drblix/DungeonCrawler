@@ -38,7 +38,7 @@ public class CheatsManager : MonoBehaviour
     private void Update() 
     {
         // Switch back to 'PlayerSettings.cheatEnabled' when done debugging
-        if (Input.GetKeyDown(KeyCode.BackQuote) && PlayerSettings.cheatsEnabled) 
+        if (Input.GetKeyDown(KeyCode.BackQuote) && !PlayerSettings.cheatsEnabled) 
         {
             if (!consoleOpen)
             {
@@ -70,15 +70,22 @@ public class CheatsManager : MonoBehaviour
         {
             string[] wrds = command.Split(' ');
 
-            if (int.TryParse(wrds[1], out int result))
+            try
             {
-                FindObjectOfType<CoinManagement>().AddCoins(result);
+                if (int.TryParse(wrds[1], out int result))
+                {
+                    FindObjectOfType<CoinManagement>().AddCoins(result);
 
-                StartCoroutine(MessageToConsole("Added " + result.ToString() + " coins!", NotiType.Success));
+                    StartCoroutine(MessageToConsole("Added " + result.ToString() + " coins!", NotiType.Success));
+                }
+                else
+                {
+                    StartCoroutine(MessageToConsole("Value could not be parsed to integer", NotiType.Error));
+                }
             }
-            else
+            catch (System.Exception)
             {
-                StartCoroutine(MessageToConsole("Value could not be parsed to integer", NotiType.Error));
+                StartCoroutine(MessageToConsole("ERR", NotiType.Error));
             }
 
             return;
@@ -88,22 +95,29 @@ public class CheatsManager : MonoBehaviour
         {
             string[] wrds = command.Split(' ');
 
-            if (int.TryParse(wrds[1], out int result))
+            try
             {
-                string newScene = SceneUtility.GetScenePathByBuildIndex(result);
-
-                if (!string.IsNullOrEmpty(newScene))
+                if (int.TryParse(wrds[1], out int result))
                 {
-                    SceneManager.LoadScene(result);
+                    string newScene = SceneUtility.GetScenePathByBuildIndex(result);
+
+                    if (!string.IsNullOrEmpty(newScene))
+                    {
+                        SceneManager.LoadScene(result);
+                    }
+                    else
+                    {
+                        StartCoroutine(MessageToConsole("Invalid scene", NotiType.Error));
+                    }
                 }
                 else
                 {
-                    StartCoroutine(MessageToConsole("Invalid scene", NotiType.Error));
+                    StartCoroutine(MessageToConsole("Value could not be parsed to integer", NotiType.Error));
                 }
             }
-            else
+            catch (System.Exception)
             {
-                StartCoroutine(MessageToConsole("Value could not be parsed to integer", NotiType.Error));
+                StartCoroutine(MessageToConsole("ERR", NotiType.Error));
             }
 
             return;
@@ -113,15 +127,22 @@ public class CheatsManager : MonoBehaviour
         {
             string[] wrds = command.Split(' ');
 
-            if (float.TryParse(wrds[1], out float result))
+            try
             {
-                Player.shootCooldown = Mathf.Abs(result);
+                if (float.TryParse(wrds[1], out float result))
+                {
+                    Player.shootCooldown = Mathf.Abs(result);
 
-                StartCoroutine(MessageToConsole("Changed firerate to " + Mathf.Abs(result).ToString(), NotiType.Success));
+                    StartCoroutine(MessageToConsole("Changed firerate to " + Mathf.Abs(result).ToString(), NotiType.Success));
+                }
+                else
+                {
+                    StartCoroutine(MessageToConsole("Value could not be parsed to float", NotiType.Error));
+                }
             }
-            else
+            catch (System.Exception)
             {
-                StartCoroutine(MessageToConsole("Value could not be parsed to float", NotiType.Error));
+                StartCoroutine(MessageToConsole("ERR", NotiType.Error));
             }
 
             return;
@@ -139,6 +160,8 @@ public class CheatsManager : MonoBehaviour
                 PlayerHealth.godMode = false;
                 StartCoroutine(MessageToConsole("Godmode disabled", NotiType.Success));
             }
+
+            return;
         }
 
         if (command == "unlimitedpowa")
@@ -153,6 +176,8 @@ public class CheatsManager : MonoBehaviour
                 PlayerMana.unlimitedMana = false;
                 StartCoroutine(MessageToConsole("Unlimited mana disabled", NotiType.Success));
             }
+
+            return;
         }
 
         if (command == "robbery")
@@ -167,7 +192,11 @@ public class CheatsManager : MonoBehaviour
                 ShopManagement.freeShopItems = false;
                 StartCoroutine(MessageToConsole("Look at you being a law-abiding citizen", NotiType.Success));
             }
+
+            return;
         }
+
+        StartCoroutine(MessageToConsole("Invalid command", NotiType.Error));
     }
 
     private IEnumerator MessageToConsole(string message, NotiType type)

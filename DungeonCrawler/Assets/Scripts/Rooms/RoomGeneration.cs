@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using Pathfinding;
 
 public class RoomGeneration : MonoBehaviour
@@ -35,6 +36,9 @@ public class RoomGeneration : MonoBehaviour
     private static int generationSeed;
     public static int GenerationSeed { get { return generationSeed; } }
 
+    private static string displaySeed;
+    public static string DisplaySeed { get { return displaySeed; } }
+
     private const int minimumRooms = 6;
     private const int maximumRooms = 25;
 
@@ -44,11 +48,37 @@ public class RoomGeneration : MonoBehaviour
     bool doneLoading = false;
     public bool DoneLoading { get { return doneLoading; } }
 
+    private int currentLevel;
+
+    [Header("Colors")]
+
+    [SerializeField]
+    private Color level2ColorF;
+    [SerializeField]
+    private Color level2ColorB;
+    [SerializeField]
+    private Color level3ColorF;
+    [SerializeField]
+    private Color level3ColorB;
+
     private void Awake() 
     {
+        currentLevel = SceneManager.GetActiveScene().buildIndex; // Level 1 = 3; Level 2 = 4; Level 3 = 5
+
         if (!usingRandomSeed)
         {
             Random.InitState(generationSeed);
+        }
+
+        if (!usingRandomSeed)
+        {
+            if (currentLevel > 3) // If scene is further than level 1
+            {
+                generationSeed = generationSeed + 1;
+                //displaySeed = generationSeed.ToString();
+
+                Random.InitState(generationSeed);
+            }
         }
     }
 
@@ -70,23 +100,79 @@ public class RoomGeneration : MonoBehaviour
             doneLoading = true;
             return null;
         }
-
+        
         switch (openDirection)
         {
             case 1:
                 GameObject room1 = topRooms[Random.Range(0, topRooms.Length)];
+                
+                /*
+                if (currentLevel == 4)
+                {
+                    room1.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level2ColorF;
+                    room1.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level2ColorB;
+                }
+                else if (currentLevel == 5)
+                {
+                    room1.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level3ColorF;
+                    room1.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level3ColorB;
+                }
+                */
+
                 return room1;
 
             case 2:
                 GameObject room2 = rightRooms[Random.Range(0, rightRooms.Length)];
+
+                /*
+                if (currentLevel == 4)
+                {
+                    room2.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level2ColorF;
+                    room2.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level2ColorB;
+                }
+                else if (currentLevel == 5)
+                {
+                    room2.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level3ColorF;
+                    room2.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level3ColorB;
+                }
+                */
+                
                 return room2;
 
             case 3:
                 GameObject room3 = bottomRooms[Random.Range(0, bottomRooms.Length)];
+
+                /*
+                if (currentLevel == 4)
+                {
+                    room3.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level2ColorF;
+                    room3.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level2ColorB;
+                }
+                else if (currentLevel == 5)
+                {
+                    room3.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level3ColorF;
+                    room3.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level3ColorB;
+                }
+                */
+
                 return room3;
 
             case 4:
                 GameObject room4 = leftRooms[Random.Range(0, leftRooms.Length)];
+
+                /*
+                if (currentLevel == 4)
+                {
+                    room4.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level2ColorF;
+                    room4.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level2ColorB;
+                }
+                else if (currentLevel == 5)
+                {
+                    room4.transform.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level3ColorF;
+                    room4.transform.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level3ColorB;
+                }
+                */
+
                 return room4;
 
             default:
@@ -196,6 +282,20 @@ public class RoomGeneration : MonoBehaviour
             }
         }
 
+        foreach (Transform child in grid)
+        {
+            if (currentLevel == 3)
+            {
+                child.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level2ColorF;
+                child.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level2ColorB;
+            }
+            else
+            {
+                child.Find("ParentRoom").Find("Foreground").GetComponent<Tilemap>().color = level3ColorF;
+                child.Find("ParentRoom").Find("Background").GetComponent<Tilemap>().color = level3ColorB;
+            }
+        }
+
         // <summary> Finishes loading </summary>
         pathfinder.Scan();
         doneLoading = true;
@@ -204,10 +304,11 @@ public class RoomGeneration : MonoBehaviour
         FindObjectOfType<Player>().ToggleEnabled(true);
     }
 
-    public static void SetGenerationSeed(int newSeed)
+    public static void SetGenerationSeed(string stringSeed, int newSeed)
     {
         usingRandomSeed = false;
         generationSeed = newSeed;
+        displaySeed = stringSeed;
     }
 
     public static void RandomGenerationSeed()

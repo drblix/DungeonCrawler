@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
     private Toggle sfxToggle;
 
     [SerializeField]
+    private Toggle cheatsToggle;
+
+    [SerializeField]
     private TMP_InputField seedInput;
 
     const float scaleTime = 0.2f;
@@ -23,6 +26,7 @@ public class MainMenu : MonoBehaviour
         volumeSlider.value = AudioListener.volume;
         textNotiToggle.isOn = PlayerSettings.disableNotiSound;
         sfxToggle.isOn = PlayerSettings.disabledSFX;
+        cheatsToggle.isOn = PlayerSettings.cheatsEnabled;
     }
 
     public void StartGame()
@@ -39,7 +43,7 @@ public class MainMenu : MonoBehaviour
 
             seed = seedInput.text.GetHashCode();
 
-            RoomGeneration.SetGenerationSeed(seed);
+            RoomGeneration.SetGenerationSeed(seedInput.text, seed);
         }
         else
         {

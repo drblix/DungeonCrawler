@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
         if (!RoomGeneration.UsingRandomSeed)
         {
-            seedLabel.SetText("Seed: " + RoomGeneration.GenerationSeed.ToString());
+            seedLabel.SetText("Seed: " + RoomGeneration.DisplaySeed);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
