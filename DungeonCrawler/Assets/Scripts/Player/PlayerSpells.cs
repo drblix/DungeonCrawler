@@ -12,11 +12,15 @@ public class PlayerSpells : MonoBehaviour
 
     private Player player;
     private PlayerMana playerMana;
+    private SpriteRenderer playerSprite;
 
     [SerializeField]
     private Transform aimer;
     [SerializeField]
     private Transform circleRotater;
+
+    [SerializeField]
+    private Color wraithFormColor;
 
     private bool onCooldown = false;
 
@@ -24,6 +28,7 @@ public class PlayerSpells : MonoBehaviour
     {
         playerMana = GetComponent<PlayerMana>();
         player = GetComponent<Player>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -52,6 +57,12 @@ public class PlayerSpells : MonoBehaviour
         {
             onCooldown = true;
             StartCoroutine(CircleDefense());
+        }
+
+        if (Input.GetKeyDown(KeyCode.V) && !onCooldown && playerMana.RemoveMana(40f))
+        {
+            onCooldown = true;
+            StartCoroutine(WraithForm());
         }
     }
 
@@ -87,6 +98,23 @@ public class PlayerSpells : MonoBehaviour
         newMissile.transform.SetPositionAndRotation(aimer.position, aimer.rotation);
 
         yield return new WaitForSeconds(1.5f);
+        onCooldown = false;
+    }
+
+    private IEnumerator WraithForm()
+    {
+        Physics2D.IgnoreLayerCollision(7, 8, true); // Disables collision between player and enemies
+        player.SetPlayerSpeed(8f);
+        playerSprite.color = wraithFormColor;
+
+        yield return new WaitForSeconds(3f);
+
+        Physics2D.IgnoreLayerCollision(7, 8, false); // Enables collision between player and enemies
+        player.SetPlayerSpeed(5f);
+        playerSprite.color = Color.white;
+
+        yield return new WaitForSeconds(1.5f);
+
         onCooldown = false;
     }
 }

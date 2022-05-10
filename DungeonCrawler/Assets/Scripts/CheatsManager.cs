@@ -7,6 +7,7 @@ using TMPro;
 public class CheatsManager : MonoBehaviour
 {   
     private Player player;
+    private RoomGeneration roomGeneration;
 
     [SerializeField]
     private Transform consoleBarTrans;
@@ -31,6 +32,7 @@ public class CheatsManager : MonoBehaviour
     private void Awake() 
     {
         player = FindObjectOfType<Player>();
+        roomGeneration = FindObjectOfType<RoomGeneration>();
 
         consoleBarTrans.localPosition = closePos;
     }
@@ -38,8 +40,13 @@ public class CheatsManager : MonoBehaviour
     private void Update() 
     {
         // Switch back to 'PlayerSettings.cheatEnabled' when done debugging
-        if (Input.GetKeyDown(KeyCode.BackQuote) && !PlayerSettings.cheatsEnabled) 
+        if (Input.GetKeyDown(KeyCode.BackQuote) && PlayerSettings.cheatsEnabled) 
         {
+            if (roomGeneration != null)
+            {
+                if (!roomGeneration.DoneLoading) { return; }
+            }
+
             if (!consoleOpen)
             {
                 consoleBarTrans.LeanMoveLocal(openPos, .2f);
@@ -148,6 +155,31 @@ public class CheatsManager : MonoBehaviour
             return;
         }
 
+        if (command.Contains("speed"))
+        {
+            string[] wrds = command.Split(' ');
+
+            try
+            {
+                if (float.TryParse(wrds[1], out float result))
+                {
+                    FindObjectOfType<Player>().SetPlayerSpeed(result);
+
+                    StartCoroutine(MessageToConsole("Set " + result.ToString() + " to player speed", NotiType.Success));
+                }
+                else
+                {
+                    StartCoroutine(MessageToConsole("Value could not be parsed to float", NotiType.Error));
+                }
+            }
+            catch (System.Exception)
+            {
+                StartCoroutine(MessageToConsole("ERR", NotiType.Error));
+            }
+
+            return;
+        }
+
         if (command == "godmode")
         {
             if (!PlayerHealth.godMode)
@@ -191,6 +223,22 @@ public class CheatsManager : MonoBehaviour
             {
                 ShopManagement.freeShopItems = false;
                 StartCoroutine(MessageToConsole("Look at you being a law-abiding citizen", NotiType.Success));
+            }
+
+            return;
+        }
+
+        if (command == "noclip")
+        {
+            if (!Player.noclipEnabled)
+            {
+                player.ToggleNoclip(true);
+                StartCoroutine(MessageToConsole("Noclip enabled", NotiType.Success));
+            }
+            else
+            {
+                player.ToggleNoclip(false);
+                StartCoroutine(MessageToConsole("Noclip disabled", NotiType.Error));
             }
 
             return;

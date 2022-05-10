@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     public static float shootCooldown = 0.35f; // Default 0.35f
 
+    public static bool noclipEnabled = false;
+
     private bool playerEnabled = true;
     public bool PlayerEnabled { get { return playerEnabled; } }
 
@@ -163,5 +165,33 @@ public class Player : MonoBehaviour
     {
         playerEnabled = state;
         animator.SetBool("Moving", false);
+    }
+
+    public void SetPlayerSpeed(float value)
+    {
+        moveSpeed = Mathf.Abs(value);
+    }
+
+    public void ToggleNoclip(bool state)
+    {
+        noclipEnabled = state;
+
+        if (noclipEnabled)
+        {
+            foreach (BoxCollider2D cllder in GetComponents<BoxCollider2D>())
+            {
+                if (!cllder.isTrigger)
+                {
+                    cllder.enabled = false;
+                }
+            }
+        }
+        else
+        {
+            foreach (BoxCollider2D cllder in GetComponents<BoxCollider2D>())
+            {
+                cllder.enabled = true;
+            }
+        }
     }
 }

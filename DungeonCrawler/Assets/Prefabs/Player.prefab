@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3f7a3cce44f5b4c9f0a343aadf5810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 6
 --- !u!114 &9010919621140527998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,8 +656,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f4394cb52f8434bb73b834ec15531c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 8913113895481246332}
   aimer: {fileID: 8913113895438891495}
   circleRotater: {fileID: 7095914020841018596}
+  wraithFormColor: {r: 0.1764706, g: 0.5137255, b: 1, a: 0.5882353}
 --- !u!198 &2247347304416955263
 ParticleSystem:
   m_ObjectHideFlags: 0

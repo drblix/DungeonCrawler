@@ -6401,7 +6401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enable cheats
+  m_text: "Enable cheats \n<size=20> (~ to open command bar)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74916e8ec7e8eaf4fb5a6ffde6f3f4cc, type: 2}
   m_sharedMaterial: {fileID: 7819350416842377838, guid: 74916e8ec7e8eaf4fb5a6ffde6f3f4cc, type: 2}
@@ -7168,7 +7168,7 @@ GameObject:
   - component: {fileID: 1677211292}
   - component: {fileID: 1677211291}
   m_Layer: 5
-  m_Name: Version
+  m_Name: Version&Rights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7190,8 +7190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 859.73, y: -506.44}
-  m_SizeDelta: {x: 200.53, y: 67.618}
+  m_AnchoredPosition: {x: 751, y: -486}
+  m_SizeDelta: {x: 391.985, y: 82.098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677211291
 MonoBehaviour:
@@ -7213,7 +7213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v 1.0
+  m_text: "v 1.0 \n<size=19>Developed by \nBenjamin Neuenschwander</size=17>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74916e8ec7e8eaf4fb5a6ffde6f3f4cc, type: 2}
   m_sharedMaterial: {fileID: 7819350416842377838, guid: 74916e8ec7e8eaf4fb5a6ffde6f3f4cc, type: 2}
@@ -7240,7 +7240,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.15
+  m_fontSize: 21.7
   m_fontSizeBase: 102.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7256,7 +7256,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

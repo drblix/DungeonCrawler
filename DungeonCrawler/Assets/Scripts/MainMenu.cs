@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
         PlayerHealth.godMode = false;
         PlayerMana.unlimitedMana = false;
         Player.shootCooldown = 0.35f;
+        Player.noclipEnabled = false;
         ShopManagement.freeShopItems = false;
         // Reverts all cheats that could've carried over
 
