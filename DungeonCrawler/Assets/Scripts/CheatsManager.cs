@@ -19,6 +19,7 @@ public class CheatsManager : MonoBehaviour
     private TextMeshProUGUI consoleText;
 
     private bool consoleOpen = false;
+    public bool ConsoleOpen { get { return consoleOpen; } }
 
     private readonly Vector3 openPos = new Vector3(200f, -211f, 0f);
     private readonly Vector3 closePos = new Vector3(200f, -243f, 0f);
@@ -241,6 +242,12 @@ public class CheatsManager : MonoBehaviour
                 StartCoroutine(MessageToConsole("Noclip disabled", NotiType.Error));
             }
 
+            return;
+        }
+
+        if (command == "scatman")
+        {
+            StartCoroutine(MessageToConsole("Perhaps you should try somewhere else ;)", NotiType.Success));
             return;
         }
 

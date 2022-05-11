@@ -2922,6 +2922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691798973}
   - component: {fileID: 691798972}
+  - component: {fileID: 691798974}
   m_Layer: 0
   m_Name: Music
   m_TagString: MusicPlayer
@@ -3039,6 +3040,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &691798974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691798971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6cfbf971b2e9541b54588105ee03a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatmansWorld: {fileID: 8300000, guid: 63cd94039b3348a46a94aa98bca68335, type: 3}
+  skipbabopScatman: {fileID: 8300000, guid: e5e97ab010ef3c54ab74a5eb5b583f16, type: 3}
 --- !u!1 &696246321
 GameObject:
   m_ObjectHideFlags: 0
