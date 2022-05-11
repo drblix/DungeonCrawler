@@ -17,8 +17,6 @@ public class PauseMenu : MonoBehaviour
 
     private RoomGeneration roomGeneration;
 
-    const float scaleTime = 0.2f;
-
     private void Awake() 
     {
         roomGeneration = FindObjectOfType<RoomGeneration>();
@@ -75,6 +73,5 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneTransitioner.CreateTransition(0, Vector2.zero);
-        //Destroy(gameObject);
     }
 }

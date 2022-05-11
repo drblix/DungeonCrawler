@@ -18,8 +18,6 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private TMP_InputField seedInput;
-
-    const float scaleTime = 0.2f;
     
     private void Start() 
     {
@@ -66,14 +64,11 @@ public class MainMenu : MonoBehaviour
 
     public void SizeUpButton(Transform obj)
     {
-        Vector3 scaleVector = new Vector3(1.1f, 1.1f, 1.1f);
-
-        obj.LeanScale(scaleVector, scaleTime).setEaseOutCirc();
+        UIElementEffects.SizeUpButton(obj);
     }
-
     public void SizeDownButton(Transform obj)
     {
-        obj.LeanScale(Vector3.one, scaleTime).setEaseInCirc();
+        UIElementEffects.SizeDownButton(obj);
     }
 
     public void DisableNotiSound(bool state)

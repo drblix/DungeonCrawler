@@ -32,8 +32,6 @@ public class ShopManagement : MonoBehaviour
     private int manaPotPrice;
     private int manaPotQuantity;
 
-    const float scaleTime = 0.2f;
-
     public static bool freeShopItems = false;
 
     private void Awake() 
@@ -127,14 +125,12 @@ public class ShopManagement : MonoBehaviour
 
     public void SizeUpButton(Transform obj)
     {
-        Vector3 scaleVector = new Vector3(1.1f, 1.1f, 1.1f);
-
-        obj.LeanScale(scaleVector, scaleTime).setEaseOutCirc();
+        UIElementEffects.SizeUpButton(obj);
     }
 
     public void SizeDownButton(Transform obj)
     {
-        obj.LeanScale(Vector3.one, scaleTime).setEaseInCirc();
+        UIElementEffects.SizeDownButton(obj);
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

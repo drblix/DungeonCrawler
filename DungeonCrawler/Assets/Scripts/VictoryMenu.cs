@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class SpellBook : MonoBehaviour
+public class VictoryMenu : MonoBehaviour
 {
-    public void TogglePlayer(bool state)
+    public void ReturnToMenu()
     {
-        Player player = FindObjectOfType<Player>();
-        player.ToggleEnabled(state);
+        SceneTransitioner.CreateTransition(0, Vector2.zero);
     }
 
     public void SizeUpButton(Transform obj)

@@ -43,13 +43,13 @@ public class BossAI : MonoBehaviour
 
     private void OnEnable() 
     {
-        StartCoroutine(BossEnabled());
+        BossEnabled();
     }
 
-    private IEnumerator BossEnabled()
+    private void BossEnabled()
     {
-        aiPath.canMove = false;
-        yield return new WaitUntil(() => Vector2.Distance(setter.target.position, transform.position) <= 4f);
+        //aiPath.canMove = false;
+        //yield return new WaitUntil(() => Vector2.Distance(setter.target.position, transform.position) <= 4f);
         
         Destroy(shield);
 
