@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     private AIPath aiPath;
     private Seeker seeker;
     private AIDestinationSetter setter;
+    private SpriteRenderer enemyRenderer;
 
     [SerializeField]
     private Animator animator;
@@ -16,6 +17,11 @@ public class EnemyHealth : MonoBehaviour
     private SpriteRenderer sRenderer;
     [SerializeField]
     private GameObject droppedItem;
+
+    [SerializeField]
+    private Sprite zombieDead;
+    [SerializeField]
+    private Sprite skeletonDead;
 
     [SerializeField]
     private int maxHealth = 5;
@@ -36,11 +42,12 @@ public class EnemyHealth : MonoBehaviour
         seeker = GetComponent<Seeker>();
         setter = GetComponent<AIDestinationSetter>();
         audioSource = GetComponent<AudioSource>();
+        enemyRenderer = GetComponentInChildren<SpriteRenderer>();
 
         currentHealth = maxHealth;
     }
 
-    
+    /*
     private void OnEnable() 
     {
         if (dead)
@@ -48,6 +55,7 @@ public class EnemyHealth : MonoBehaviour
             animator.SetBool("Dead", true);
         }
     }
+    */
 
     public void StartDamage(int dmgAmount)
     {
@@ -96,9 +104,26 @@ public class EnemyHealth : MonoBehaviour
         Destroy(aiPath);
         Destroy(seeker);
         Destroy(setter);
+        Destroy(GetComponent<VolumeController>());
         Destroy(GetComponentInChildren<GFXHandler>());
 
-        animator.SetBool("Dead", true);
+        if (transform.name.Contains("Zombie"))
+        {
+            Destroy(GetComponentInChildren<Animator>());
+            Destroy(GetComponent<ZombieAI>());
+            enemyRenderer.sprite = zombieDead;
+        }
+        else if (transform.name.Contains("Skeleton"))
+        {
+            Destroy(GetComponentInChildren<Animator>());
+            Destroy(GetComponent<SkeletonAI>());
+            enemyRenderer.sprite = skeletonDead;
+        }
+        else
+        {
+            animator.SetBool("Dead", true);
+        }
+
         audioSource.Play();
 
         if (droppedItem != null && !isBoss)

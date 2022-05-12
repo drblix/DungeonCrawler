@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 7791610535344922621}
   m_Layer: 0
   m_Name: MapCamera
-  m_TagString: Untagged
+  m_TagString: MapCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,11 +359,11 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 56.34
+  orthographic size: 56
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4289
+    m_Bits: 4545
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 8acfd04bd6e871a4ea0a9b59ca89a20b, type: 2}
   m_TargetDisplay: 0

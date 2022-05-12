@@ -8,9 +8,9 @@ TagManager:
   - Weapon
   - Pickup
   - Grid
-  - UICamera
   - CameraSetters
   - MusicPlayer
+  - MapCamera
   layers:
   - Default
   - TransparentFX

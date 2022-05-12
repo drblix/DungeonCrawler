@@ -117,6 +117,11 @@ public class RoomCameraHandler : MonoBehaviour
             if (roomObjContainer != null)
             {
                 roomObjContainer.SetActive(true);
+                
+                foreach (Transform child in roomObjContainer.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -127,7 +132,15 @@ public class RoomCameraHandler : MonoBehaviour
         {
             if (roomObjContainer != null)
             {
-                roomObjContainer.SetActive(false);
+                foreach (Transform child in roomObjContainer.transform)
+                {
+                    if (!child.CompareTag("Enemy"))
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+
+                //roomObjContainer.SetActive(false);
             }
         }
     }

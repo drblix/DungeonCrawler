@@ -36,33 +36,40 @@ public class BossAI : MonoBehaviour
         aiPath = GetComponent<AIPath>();
         setter = GetComponent<AIDestinationSetter>();
         shield = transform.parent.Find("Shield").gameObject;
-        musicSource = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
+
+        if (!MusicEasterEgg.secretTriggered)
+        {
+            musicSource = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
+        }
 
         setter.target = FindObjectOfType<Player>().transform;
+
+        aiPath.canMove = false;
     }
 
     private void OnEnable() 
     {
-        BossEnabled();
+        StartCoroutine(BossEnabled());
     }
 
-    private void BossEnabled()
+    private IEnumerator BossEnabled()
     {
-        //aiPath.canMove = false;
-        //yield return new WaitUntil(() => Vector2.Distance(setter.target.position, transform.position) <= 4f);
+        yield return new WaitUntil(() => Vector2.Distance(setter.target.position, transform.position) <= 4f);
         
+        Debug.Log("Player nearby!");
+
         Destroy(shield);
 
         aiPath.canMove = true;
-
-        Debug.Log("Player nearby!");
-
         roomCollider.enabled = true;
         
-        originalClip = musicSource.clip;
-        musicSource.Stop();
-        musicSource.clip = bossMusic;
-        musicSource.Play();
+        if (musicSource != null)
+        {
+            originalClip = musicSource.clip;
+            musicSource.Stop();
+            musicSource.clip = bossMusic;
+            musicSource.Play();
+        }
 
         StartCoroutine(BossAttackCooldown());
     }
@@ -122,9 +129,13 @@ public class BossAI : MonoBehaviour
         StopCoroutine(BossAttackCooldown());
 
         dead = true;
-        musicSource.Stop();
-        musicSource.clip = originalClip;
-        musicSource.Play();
+
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            musicSource.clip = originalClip;
+            musicSource.Play();
+        }
 
         SceneTransitioner.CreateTransition(SceneManager.GetActiveScene().buildIndex + 1, Vector2.zero);
     }

@@ -258,6 +258,8 @@ MonoBehaviour:
   animator: {fileID: 1703854004555804833}
   sRenderer: {fileID: 1703854004555804837}
   droppedItem: {fileID: 756242677504254184, guid: c089e3190822c7d40be80bcc19accbb3, type: 3}
+  zombieDead: {fileID: -980516788960830398, guid: e0465354162029b40ab593c1a804bdcd, type: 3}
+  skeletonDead: {fileID: -7021505876318606439, guid: b93286e67e29d0b40a3901324aeeded2, type: 3}
   maxHealth: 7
   poisoned: 0
   isBoss: 0
